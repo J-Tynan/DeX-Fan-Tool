@@ -24,19 +24,22 @@
 - [x] **Risk & safety plan** — P0 — *0.5d* — **Joseph** — Created `docs/RISK_AND_SAFETY.md`.  
 - [x] **Repository skeleton** — P1 — *0.5d* — **Joseph** — Repo created and initial docs uploaded.  
 - [~] **Define license & distribution policy** — P1 — *0.5d* — **Joseph** — Implementation started 2026-04-13 in `LICENSE.md`, `legal/LICENSE.md`, and `legal/DISTRIBUTION_POLICY.md`.  
-- [~] **Create CONTRIBUTING.md and CODE_OF_CONDUCT** — P2 — *0.5d* — **Joseph** — Implementation started 2026-04-13 in `.github/CONTRIBUTING.md` and `.github/CODE_OF_CONDUCT.md`.
+- [x] **Create CONTRIBUTING.md and CODE_OF_CONDUCT** — P2 — *0.5d* — **Joseph** — Implementation started 2026-04-13 in `.github/CONTRIBUTING.md` and `.github/CODE_OF_CONDUCT.md`.
 
 ### Research & reconnaissance
 
-- [ ] **Confirm dock VID/PID and descriptors** — P0 — *1d* — **Joseph** — Use phone + USB enumerator to capture device IDs.  
-- [ ] **Locate any public references / community work** — P2 — *1d* — *unassigned* — Search forums, GitHub, XDA for EE‑MG950 investigations.  
-- [~] **Inventory available phones and One UI versions** — P1 — *0.5d* — **Joseph** — Template added in `docs/HARDWARE_INVENTORY.md`; populate with actual devices before first live test.
+- [~] **Inventory available phones and One UI versions** — P0 — *0.5d* — **Joseph** — Populate exact device model, Android / One UI version, USB-C data status, and selected first-test hardware in `docs/HARDWARE_INVENTORY.md`.  
+- [ ] **Verify test bench readiness before first live USB test** — P0 — *0.5d* — **Joseph** — Confirm powered hub, cables, multimeter, power path, and abort path before live enumeration.  
+- [ ] **Verify dock visibility on modern phone (decision gate)** — P0 — *0.5d* — **Joseph** — Use the existing Kotlin probe on the primary modern phone; if visible continue to VID/PID capture, otherwise pivot to fallback tasks.  
+- [ ] **Confirm dock VID/PID and descriptors** — P0 — *1d* — **Joseph** — If the dock is visible to Android, capture vendor/product IDs and descriptors with the USB enumerator.  
+- [ ] **Establish baseline One UI / fan-control matrix** — P0 — *0.5d* — **Joseph** — Record which phone / OS combinations are confirmed to drive the fan, fail, or remain unverified.  
+- [ ] **Locate any public references / community work** — P2 — *1d* — *unassigned* — Search forums, GitHub, and XDA for EE‑MG950 investigations, modern One UI compatibility notes, and workarounds.
 
 ### Software probe (non‑destructive)
 
 - [~] **Create Kotlin USB probe skeleton** — P0 — *1d* — **Joseph** — Read-only USB enumeration UI added; next step is safe probe scaffolding after live visibility test.  
 - [ ] **Add logging to capture timestamped traces** — P0 — *0.5d* — **Joseph** — Save logs to `/data` with retention rules.  
-- [ ] **Test probe on modern phone (no root)** — P0 — *0.5d* — **Joseph** — Verify whether dock appears as `UsbDevice`.  
+- [ ] **Test probe on modern phone (no root)** — P0 — *0.5d* — **Joseph** — Execute the Research & reconnaissance visibility gate and record whether the dock appears as `UsbDevice`.  
 - [ ] **If dock visible: expand probe ranges and capture responses** — P0 — *1–2d* — **Joseph** — Carefully iterate vendor IN requests; log all non-empty responses.  
 - [ ] **If dock not visible: attempt to free interface (toggle DeX, reboot)** — P1 — *0.5d* — **Joseph** — Document steps and results.  
 - [ ] **If dock not visible and still needed: plan capture with rooted phone or hardware sniffer** — P1 — *1d* — **Joseph** — Decide path and procure tools.
