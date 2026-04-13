@@ -1,0 +1,7 @@
+targets:
+  - name: docs
+    description: Validate required project documentation is present.
+  - name: android
+    description: Build the Android probe app once the Gradle wrapper is generated.
+  - name: scripts
+    description: Run lightweight checks for helper scripts and notebooks.

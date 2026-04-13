@@ -1,0 +1,25 @@
+# Ignore common build and system files
+.DS_Store
+Thumbs.db
+.vscode/
+*.log
+logs/
+data/*.pcap
+# Keep sample traces only
+# !data/sample.pcap
+local.properties
+*.keystore
+*.iml
+/build/
+/android/app/build/
+node_modules/
+dist/
+.env
+*.pyc
+__pycache__/
+# Private key materials
+*.key
+*.pem
+*.asc
+*.p12
+*.jks

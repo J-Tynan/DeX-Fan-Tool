@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  placeholder-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Verify required docs exist
+        run: |
+          test -f README.md
+          test -f docs/PROJECT_CHARTER.md
+          test -f docs/RISK_AND_SAFETY.md
+          test -f docs/TEST_PLAN.md
+
+      - name: Placeholder status
+        run: echo "CI placeholder is active. Add Android and firmware jobs as implementation lands."

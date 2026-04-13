@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+set -eu
+
+echo "This is a placeholder Gradle wrapper script."
+echo "Run 'gradle wrapper' inside android/ to generate the full wrapper files."
+exit 1
