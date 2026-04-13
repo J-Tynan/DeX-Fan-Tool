@@ -93,7 +93,3 @@
 - [ ] **Add SETUP.md** so contributors can build and run the probe app quickly.
 
 ---
-
-**If you want, I can now:**
-- generate the GitHub issues for the P0 tasks and populate them with checklists and acceptance criteria, or  
-- produce the Kotlin USB probe skeleton project files ready to open in VS Code.
