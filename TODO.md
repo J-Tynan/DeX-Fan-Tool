@@ -30,11 +30,11 @@
 
 - [ ] **Confirm dock VID/PID and descriptors** — P0 — *1d* — **Joseph** — Use phone + USB enumerator to capture device IDs.  
 - [ ] **Locate any public references / community work** — P2 — *1d* — *unassigned* — Search forums, GitHub, XDA for EE‑MG950 investigations.  
-- [ ] **Inventory available phones and One UI versions** — P1 — *0.5d* — **Joseph** — Record models and OS versions in `docs/HARDWARE_INVENTORY.md`.
+- [~] **Inventory available phones and One UI versions** — P1 — *0.5d* — **Joseph** — Template added in `docs/HARDWARE_INVENTORY.md`; populate with actual devices before first live test.
 
 ### Software probe (non‑destructive)
 
-- [ ] **Create Kotlin USB probe skeleton** — P0 — *1d* — **Joseph** — App enumerates devices, requests permission, performs safe IN `controlTransfer` probes, logs responses.  
+- [~] **Create Kotlin USB probe skeleton** — P0 — *1d* — **Joseph** — Read-only USB enumeration UI added; next step is safe probe scaffolding after live visibility test.  
 - [ ] **Add logging to capture timestamped traces** — P0 — *0.5d* — **Joseph** — Save logs to `/data` with retention rules.  
 - [ ] **Test probe on modern phone (no root)** — P0 — *0.5d* — **Joseph** — Verify whether dock appears as `UsbDevice`.  
 - [ ] **If dock visible: expand probe ranges and capture responses** — P0 — *1–2d* — **Joseph** — Carefully iterate vendor IN requests; log all non-empty responses.  
