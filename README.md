@@ -6,14 +6,19 @@ Restore fan control for the Samsung DeX Station EE‑MG950 by reverse engineerin
 
 ## Status
 
-Planning and safe probing phase.
+Build-ready, read-only probing phase.
+
+- Android wrapper is checked in and the debug build has been validated.
+- The current Android app enumerates visible USB devices without sending control transfers.
+- The next gate is confirming `adb` device visibility and running the probe on a physical phone.
 
 ## Quick start
 
 1. Read `docs/PROJECT_CHARTER.md` and `docs/RISK_AND_SAFETY.md`.
 2. Set up development environment (Android SDK, adb). See `docs/SETUP.md`.
-3. Run the USB probe app in `android/` to enumerate devices and capture safe IN responses.
-4. Follow the Test Plan in `docs/TEST_PLAN.md`.
+3. Build the Android probe from `android/` with the checked-in Gradle wrapper.
+4. Connect a test phone, verify `adb devices`, then install and run the read-only probe app.
+5. Follow the Test Plan in `docs/TEST_PLAN.md`.
 
 ## Safety
 
