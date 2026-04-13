@@ -3,12 +3,15 @@
 This folder contains a Kotlin Android app skeleton for enumerating USB devices, logging safe probe results, and later replaying validated control sequences.
 
 ## Current Status
+
 - Gradle files are scaffolded.
-- The wrapper script is a placeholder and should be replaced by running `gradle wrapper` from this directory.
-- The app starts a minimal activity so the project opens cleanly in Android Studio after wrapper generation.
+- The Gradle wrapper is generated and can be used with `gradlew.bat` on Windows.
+- The app builds successfully in debug mode with the generated wrapper.
+- The app starts a minimal read-only activity that enumerates visible USB devices without sending control transfers.
 
 ## Next Steps
-1. Install a local Gradle distribution.
-2. Run `gradle wrapper` inside `android/`.
-3. Open the folder in Android Studio and sync the project.
-4. Add USB host permissions and probe logic.
+
+1. Open the folder in Android Studio and sync the project if you want IDE-assisted Android development.
+2. Connect the primary modern phone and verify `adb devices` can see it.
+3. Install the debug app build and run the USB visibility gate from the TODO.
+4. Add safe probe scaffolding and logging after the visibility test passes.

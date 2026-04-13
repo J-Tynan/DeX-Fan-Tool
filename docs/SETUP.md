@@ -28,7 +28,7 @@ The workspace recommends these extensions:
 - Android SDK Platform 34
 - Android Build-Tools 34.x
 - Android Platform-Tools (`adb`)
-- A local Gradle installation for initial wrapper generation
+- A local Gradle installation only if the wrapper ever needs to be regenerated
 
 Repository versions in use today:
 
@@ -76,9 +76,18 @@ PowerShell check:
 adb version
 ```
 
-### 3. Install Gradle for one-time wrapper generation
+### 3. Regenerate the wrapper only if needed
 
-The checked-in `android/gradlew` script is currently a placeholder. Before the Android project can be built normally, generate the real Gradle wrapper from inside `android/`.
+The repository now includes a generated Gradle wrapper. In normal use, build with the checked-in wrapper files from inside `android/`.
+
+PowerShell example:
+
+```powershell
+Set-Location c:\Projects\DeX-Fan-Tool\android
+.\gradlew.bat tasks
+```
+
+If the wrapper files ever need to be regenerated, install a local Gradle distribution and run `gradle wrapper` from inside `android/`.
 
 PowerShell example:
 
@@ -87,7 +96,7 @@ Set-Location c:\Projects\DeX-Fan-Tool\android
 gradle wrapper
 ```
 
-This should create the normal wrapper files, including `gradlew.bat`, and replace the placeholder shell script.
+This should recreate the wrapper files, including `gradlew.bat` and `gradle-wrapper.jar`.
 
 If you prefer, Android Studio can also be used first to import the Android project and help verify SDK and Gradle configuration.
 
@@ -116,7 +125,7 @@ When VS Code prompts for recommended extensions, install them.
 
 ### Android project
 
-After generating the wrapper:
+With the generated wrapper in place:
 
 ```powershell
 Set-Location c:\Projects\DeX-Fan-Tool\android
