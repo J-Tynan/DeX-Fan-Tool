@@ -21,6 +21,13 @@ Planning and safe probing phase.
 - Use a powered hub and bench supply with current limiting.
 - Use spare hardware for destructive tests.
 
+## Governance
+
+- Contribution guide: `.github/CONTRIBUTING.md`
+- Code of conduct: `.github/CODE_OF_CONDUCT.md`
+- Reverse engineering policy: `docs/REVERSE_ENGINEERING_POLICY.md`
+- Distribution policy: `legal/DISTRIBUTION_POLICY.md`
+
 ## Repository layout
 
 - `/docs` — project documents and policies
@@ -30,7 +37,7 @@ Planning and safe probing phase.
 
 ## License
 
-See `LICENSE.md`.
+See `LICENSE.md`. Distribution of sensitive captures, vendor-derived materials, and bundled third-party artifacts is further constrained by `legal/DISTRIBUTION_POLICY.md`.
 
 ## Contact
 

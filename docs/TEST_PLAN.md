@@ -2,8 +2,8 @@
 
 ## Test environment
 - **Dock**: Samsung DeX Station EE‑MG950
-- **Phones**: one older One UI device that still runs the fan (if available) and one modern test device
-- **Tools**: powered USB hub, USB‑C cables, multimeter, bench power supply, optional USB protocol analyzer, optional oscilloscope
+- **Phones**: one older One UI device (Samsung Galaxy Note 9) that still runs the fan (if available) and one modern test device (Samsung Galaxy S23 Ultra)
+- **Tools**: powered USB hub (DeX Station), USB‑C cables, multimeter, bench power supply, optional USB protocol analyzer, optional oscilloscope
 - **Software**: Android app (Kotlin) for probing; adb and logcat for logs
 
 ## Test cases

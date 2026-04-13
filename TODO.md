@@ -23,8 +23,8 @@
 - [x] **Scope & non-goals** — P0 — *0.25d* — **Joseph** — Created `docs/SCOPE.md`.  
 - [x] **Risk & safety plan** — P0 — *0.5d* — **Joseph** — Created `docs/RISK_AND_SAFETY.md`.  
 - [x] **Repository skeleton** — P1 — *0.5d* — **Joseph** — Repo created and initial docs uploaded.  
-- [ ] **Define license & distribution policy** — P1 — *0.5d* — **Joseph** — `legal/LICENSE.md` and `legal/DISTRIBUTION_POLICY.md`.  
-- [ ] **Create CONTRIBUTING.md and CODE_OF_CONDUCT** — P2 — *0.5d* — *unassigned*.
+- [~] **Define license & distribution policy** — P1 — *0.5d* — **Joseph** — Implementation started 2026-04-13 in `LICENSE.md`, `legal/LICENSE.md`, and `legal/DISTRIBUTION_POLICY.md`.  
+- [~] **Create CONTRIBUTING.md and CODE_OF_CONDUCT** — P2 — *0.5d* — **Joseph** — Implementation started 2026-04-13 in `.github/CONTRIBUTING.md` and `.github/CODE_OF_CONDUCT.md`.
 
 ### Research & reconnaissance
 
