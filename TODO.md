@@ -33,7 +33,7 @@
 - [ ] **Verify dock visibility on modern phone (decision gate)** — P0 — *0.5d* — **Joseph** — Use the existing Kotlin probe on the primary modern phone; if visible continue to VID/PID capture, otherwise pivot to fallback tasks.  
 - [ ] **Confirm dock VID/PID and descriptors** — P0 — *1d* — **Joseph** — If the dock is visible to Android, capture vendor/product IDs and descriptors with the USB enumerator.  
 - [ ] **Establish baseline One UI / fan-control matrix** — P0 — *0.5d* — **Joseph** — Record which phone / OS combinations are confirmed to drive the fan, fail, or remain unverified.  
-- [ ] **Locate any public references / community work** — P2 — *1d* — *unassigned* — Search forums, GitHub, and XDA for EE‑MG950 investigations, modern One UI compatibility notes, and workarounds.
+- [x] **Locate any public references / community work** — P2 — *1d* — **Joseph** — Initial survey documented 2026-04-14 in `docs/COMMUNITY_REFERENCES.md`; findings include mixed S23/S24 compatibility anecdotes, charger/cable sensitivity, and no clear public fan-control reverse-engineering repo.
 
 ### Software probe (non‑destructive)
 
@@ -109,9 +109,23 @@
 
 ---
 
+## Tomorrow start here
+
+1. Fill the real hardware details for the first live session in `docs/HARDWARE_INVENTORY.md`: actual phone model / OS, charger, cable, dock, hub, and bench tools.
+2. Walk through `docs/FIRST_LIVE_DOCK_CHECKLIST.md` before connecting the phone, especially the power, cabling, and physical-fit checks.
+3. Complete **Verify modern phone is visible to adb**.
+4. Complete **Install the read-only probe app on the modern phone**.
+5. Complete **Verify dock visibility on modern phone (decision gate)** and record the result as one of: `no charge`, `charge but no HDMI`, `DeX works but app cannot see dock`, or `full DeX plus app visibility`.
+6. If the dock is visible to Android, complete **Confirm dock VID/PID and descriptors** immediately and then update **Establish baseline One UI / fan-control matrix**.
+7. If the dock is not visible, retry once with the case removed and once with a second known-good fast/adaptive charger and cable, then document whether the failure looks like fit, power, display, or USB visibility.
+
 ## Next immediate actions (recommended)
 
-- [~] **Create GitHub issues** for the top P0 tasks: *Confirm dock VID/PID*, *Create Kotlin USB probe skeleton*, *Capture from older One UI if available*.  
-- [x] **Add SETUP.md** so contributors can build and run the probe app quickly — Created `docs/SETUP.md` on 2026-04-13.
+- [ ] **Run the first live dock session** — P0 — *0.5d* — **Joseph** — Use `docs/FIRST_LIVE_DOCK_CHECKLIST.md` and update `docs/HARDWARE_INVENTORY.md` with real outcomes.
+- [ ] **Verify modern phone is visible to adb** — P0 — *0.25d* — **Joseph** — Enable developer options / USB debugging and confirm the primary phone appears in `adb devices`.
+- [ ] **Install the read-only probe app on the modern phone** — P0 — *0.25d* — **Joseph** — Deploy the current app build to the primary test phone before running the USB visibility gate.
+- [ ] **Verify dock visibility on modern phone (decision gate)** — P0 — *0.5d* — **Joseph** — Record whether the dock is visible, and classify any failure mode precisely.
+- [ ] **Confirm dock VID/PID and descriptors** — P0 — *1d* — **Joseph** — If the dock is visible to Android, capture vendor/product IDs and descriptors with the USB enumerator.
+- [ ] **Establish baseline One UI / fan-control matrix** — P0 — *0.5d* — **Joseph** — Promote community assumptions to local outcomes after the first live session.
 
 ---

@@ -18,6 +18,25 @@ Track the hardware available for safe experiments before changing any fan-contro
 | Samsung Galaxy S23 Ultra | One UI 4.1 based on Android 12 | TBD | Yes | TBD | Record the primary modern test phone first. |
 | Samsung Galaxy Note 9 | One UI 8 based on Android 16 | TBD | TBD | Yes | Record any older One UI device that may still drive the fan. |
 
+## Community Compatibility Matrix
+
+Use this matrix to separate public anecdotes from local verification. Do not promote a row from `Community report` to `Locally verified` until it has been reproduced on project hardware.
+
+| Phone / generation | Community report | Confidence | Likely constraints / caveats | Local status | Notes |
+| --- | --- | --- | --- | --- | --- |
+| Galaxy S23 / S23 base | Works with `EE-MG950` according to one `r/SamsungDex` report | Low | Remove thick case; fully open-bottom case may be required | Unverified | Treat as a physical-fit and power-path check first. |
+| Galaxy S23 Ultra | Mixed reports: one user said it works, another reported no charge and no HDMI | Low | Power brick sensitivity; seating/fit may matter | Unverified | Important decision-gate target for this project. |
+| Galaxy S24 family | Samsung Community thread title claims the dock works | Low | Page could not be fully extracted; likely still worth trying with minimal accessories first | Unverified | Bookmark as a lead, not proof. |
+| Note 20 generation | Community reports indicate the dock fits and should work | Low | Charger choice still discussed; dock was not designed for this generation | Unverified | Useful if one is available as a middle-generation comparison. |
+| S8 / Note8 / S9 / Note9 generation | Officially aligned with the original dock era; community treats these as the native generation | Medium | Original dock assumptions most likely hold here | Unverified in repo | Best candidates for fallback capture and baseline fan behavior. |
+
+## Community-Informed Test Constraints
+
+- Use a known-good adaptive fast charger and cable for early dock tests.
+- Test once with the phone case removed if the connector fit is even slightly questionable.
+- Record `no charge`, `charge but no HDMI`, `HDMI works but no dock visibility`, and `full DeX works` as separate outcomes.
+- Treat any community compatibility claim as anecdotal until it is reproduced locally.
+
 ## Docks
 
 | Dock | Model | Condition | Fan currently works | Opened / modified | Notes |
@@ -42,8 +61,10 @@ Track the hardware available for safe experiments before changing any fan-contro
 - Dock selected for first USB enumeration: Primary dock (model: EE-MG950)
 - Powered hub selected: TBD
 - Abort path verified: bench power switch / unplug USB / app remains read-only
+- First live-session checklist: `docs/FIRST_LIVE_DOCK_CHECKLIST.md`
 
 ## Notes
 
 - Keep destructive or invasive tests off the primary dock until the owner signs off.
 - Record the date of the last successful USB enumeration test in this file once the Android app can see the dock.
+- Community survey source: `docs/COMMUNITY_REFERENCES.md`
