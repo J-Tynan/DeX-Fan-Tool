@@ -10,6 +10,7 @@ Build-ready, read-only probing phase.
 
 - Android wrapper is checked in and the debug build has been validated.
 - The current Android app enumerates visible USB devices without sending control transfers.
+- The Android app now saves timestamped enumeration reports in app-internal storage with simple retention.
 - The next gate is confirming `adb` device visibility and running the probe on a physical phone.
 
 ## Quick start
@@ -38,7 +39,7 @@ Build-ready, read-only probing phase.
 - `/docs` — project documents and policies
 - `/android` — Kotlin app for USB probing
 - `/firmware` — hardware bypass code (if needed)
-- `/data` — captured traces and logs (sensitive; do not publish raw firmware)
+- `/data` — reviewed traces and logs retained in the repository (sensitive; do not publish raw firmware)
 
 ## License
 

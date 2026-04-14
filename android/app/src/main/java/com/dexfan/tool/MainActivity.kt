@@ -1,14 +1,11 @@
 package com.dexfan.tool
 
 import android.graphics.Typeface
-import android.hardware.usb.UsbDevice
 import android.hardware.usb.UsbManager
 import android.os.Bundle
-import android.util.Log
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.activity.ComponentActivity
-import java.util.Locale
 
 class MainActivity : ComponentActivity() {
     private val usbManager by lazy {
@@ -16,9 +13,12 @@ class MainActivity : ComponentActivity() {
     }
 
     private lateinit var content: TextView
+    private lateinit var probeLogger: ProbeLogger
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        probeLogger = ProbeLogger(filesDir)
 
         content = TextView(this).apply {
             text = "DeX Fan Tool\nRead-only USB enumeration mode."
@@ -33,68 +33,16 @@ class MainActivity : ComponentActivity() {
 
     override fun onResume() {
         super.onResume()
-        val report = buildDeviceReport()
-        content.text = report
-        Log.i(TAG, report)
+        val snapshot = buildProbeSnapshot()
+        val report = UsbProbeReportFormatter.format(snapshot)
+        val logResult = probeLogger.logSnapshot(snapshot, report)
+        content.text = UsbProbeReportFormatter.appendLogStatus(report, logResult)
     }
 
-    private fun buildDeviceReport(): String {
+    private fun buildProbeSnapshot(): UsbProbeSnapshot {
         val manager = usbManager
-            ?: return """
-                DeX Fan Tool
-                USB manager unavailable on this device.
+            ?: return UsbProbeSnapshot.managerUnavailable()
 
-                No USB control transfers are sent from this screen.
-            """.trimIndent()
-
-        val devices = manager.deviceList.values
-            .sortedWith(compareBy<UsbDevice>({ it.vendorId }, { it.productId }, { it.deviceName }))
-
-        return buildString {
-            appendLine("DeX Fan Tool")
-            appendLine("Read-only USB enumeration mode.")
-            appendLine()
-
-            if (devices.isEmpty()) {
-                appendLine("No USB devices detected.")
-                appendLine()
-                appendLine("Connect the dock through a powered hub and reopen this screen.")
-                appendLine("No USB control transfers are sent from this screen.")
-                return@buildString
-            }
-
-            appendLine("Detected ${devices.size} USB device(s).")
-
-            devices.forEachIndexed { index, device ->
-                appendLine()
-                appendLine("[${index + 1}] ${device.deviceName}")
-                appendLine("VID: ${formatUsbId(device.vendorId)}  PID: ${formatUsbId(device.productId)}")
-                appendLine(
-                    "Class/Subclass/Protocol: ${device.deviceClass}/${device.deviceSubclass}/${device.deviceProtocol}"
-                )
-                appendLine("Interfaces: ${device.interfaceCount}")
-
-                for (interfaceIndex in 0 until device.interfaceCount) {
-                    val usbInterface = device.getInterface(interfaceIndex)
-                    appendLine(
-                        "  - Interface $interfaceIndex: class=${usbInterface.interfaceClass} " +
-                            "subclass=${usbInterface.interfaceSubclass} " +
-                            "protocol=${usbInterface.interfaceProtocol} " +
-                            "endpoints=${usbInterface.endpointCount}"
-                    )
-                }
-            }
-
-            appendLine()
-            appendLine("No USB control transfers are sent from this screen.")
-        }
-    }
-
-    private fun formatUsbId(value: Int): String {
-        return String.format(Locale.US, "0x%04X", value and 0xFFFF)
-    }
-
-    companion object {
-        private const val TAG = "DeXFanTool"
+        return UsbProbeSnapshot.fromUsbDevices(manager.deviceList.values)
     }
 }

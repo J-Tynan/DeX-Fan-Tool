@@ -1,12 +1,14 @@
 # Test Plan
 
 ## Test environment
+
 - **Dock**: Samsung DeX Station EE‑MG950
 - **Phones**: one older One UI device (Samsung Galaxy Note 9) that still runs the fan (if available) and one modern test device (Samsung Galaxy S23 Ultra)
 - **Tools**: powered USB hub (DeX Station), USB‑C cables, multimeter, bench power supply, optional USB protocol analyzer, optional oscilloscope
 - **Software**: Android app (Kotlin) for probing; adb and logcat for logs
 
 ## Test cases
+
 1. **Device enumeration**
    - Objective: app lists dock VID/PID and descriptors.
    - Acceptance: device appears in `UsbManager.getDeviceList()` with vendor/product IDs logged.
@@ -32,9 +34,11 @@
    - Acceptance: MCU reliably drives fan at multiple speeds and responds to phone commands.
 
 ## Monitoring and logging
-- Log all USB probes and responses to timestamped files.
+
+- Log all USB probes and responses to timestamped files in app-internal storage, then copy reviewed artifacts into `/data` when they should be retained in the repository.
 - Record thermal readings and current draw during replay tests.
 
 ## Acceptance criteria
+
 - Either a reproducible software control sequence is found and implemented, or a documented hardware bypass is validated.
 - All tests pass without damage and with documented safety checks.

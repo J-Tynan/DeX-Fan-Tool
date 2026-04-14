@@ -38,12 +38,12 @@
 ### Software probe (non‑destructive)
 
 - [x] **Install and configure JDK 17 for Android builds** — P0 — *0.25d* — **Joseph** — Installed Eclipse Temurin 17 and set `JAVA_HOME` on 2026-04-13; project config targets Java 17.  
-- [x] **Install and configure Android SDK and platform-tools** — P0 — *0.25d* — **Joseph** — Configured `ANDROID_SDK_ROOT` / `ANDROID_HOME`, provisioned `sdkmanager`, and verified Platform 34, Build-Tools 34.0.0, and `adb` on 2026-04-13.  
+- [x] **Install and configure Android SDK and platform-tools** — P0 — *0.25d* — **Joseph** — Configured `ANDROID_SDK_ROOT` / `ANDROID_HOME`, provisioned `sdkmanager`, and verified Platform 34, Build-Tools 34.0.0, and `adb`; re-verified locally on 2026-04-14.  
 - [x] **Install local Gradle and generate the Android wrapper** — P0 — *0.25d* — **Joseph** — Installed local Gradle 8.7 and generated `gradlew.bat` plus `gradle-wrapper.jar` on 2026-04-13.  
 - [x] **Validate Android project sync and debug build** — P0 — *0.25d* — **Joseph** — Verified wrapper task listing and successful `assembleDebug` build on 2026-04-13 after enabling AndroidX.  
 - [ ] **Verify modern phone is visible to adb** — P0 — *0.25d* — **Joseph** — Enable developer options / USB debugging and confirm the primary phone appears in `adb devices`.  
 - [ ] **Install the read-only probe app on the modern phone** — P0 — *0.25d* — **Joseph** — Deploy the current app build to the primary test phone before running the USB visibility gate.  
-- [~] **Create Kotlin USB probe skeleton** — P0 — *1d* — **Joseph** — Read-only USB enumeration UI added; next step is safe probe scaffolding after live visibility test.  
+- [ ] **Create Kotlin USB probe skeleton** — P0 — *1d* — **Joseph** — Read-only USB enumeration UI added; next step is safe probe scaffolding after live visibility test.  
 - [ ] **Add logging to capture timestamped traces** — P0 — *0.5d* — **Joseph** — Save logs to `/data` with retention rules.  
 - [ ] **Test probe on modern phone (no root)** — P0 — *0.5d* — **Joseph** — Execute the Research & reconnaissance visibility gate and record whether the dock appears as `UsbDevice`.  
 - [ ] **If dock visible: expand probe ranges and capture responses** — P0 — *1–2d* — **Joseph** — Carefully iterate vendor IN requests; log all non-empty responses.  

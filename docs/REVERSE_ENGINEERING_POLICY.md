@@ -14,7 +14,7 @@ Define rules and boundaries for reverse engineering activities to ensure ethical
 
 ## Data handling
 
-- Store captured traces and logs in the project repository under `/data` with clear labels and retention notes.
+- Generate raw Android probe logs in app-internal storage first, then move reviewed and redacted copies into `/data` with clear labels and retention notes when they are ready to keep in the repository.
 - Do not publish raw firmware or binary blobs without permission.
 - Treat traces and logs as sensitive until they have been reviewed and redacted.
 
