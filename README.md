@@ -4,7 +4,7 @@
 
 Restore fan control for the Samsung DeX Station EE‑MG950 by reverse engineering the USB control sequence or providing a documented hardware bypass.
 
-![Samsung DeX Station EE‑MG950](hardware/photos/DeX%20Station/EE-MG950_06_R-Slide-Open%20(Small%20540p).png)
+![Samsung DeX Station EE‑MG950](hardware/photos/DeX%20Station/EE-MG950_06_R-Slide-Open%20(Small%20540p).jpeg)
 
 ## Status
 
