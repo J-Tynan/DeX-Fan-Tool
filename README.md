@@ -8,20 +8,24 @@ Restore fan control for the Samsung DeX Station EE‑MG950 by reverse engineerin
 
 ## Status
 
-Build-ready, read-only probing phase.
+Build-ready, read-only probing phase with a documented fallback capture path.
 
 - Android wrapper is checked in and the debug build has been validated.
 - The current Android app enumerates visible USB devices without sending control transfers.
 - The Android app now saves timestamped enumeration reports in app-internal storage with simple retention.
-- The next gate is confirming `adb` device visibility and running the probe on a physical phone.
+- The preferred path is still a non-root solution on compatible phones using normal Android USB access.
+- The next gate is confirming `adb` device visibility and running the probe on a physical modern phone.
+- If the modern-phone visibility gate fails, the documented fallback is a rooted Galaxy Note 9 capture path using `usbmon` before committing to more invasive or expensive alternatives.
+- A formal go/no-go guide for irreversible steps is now documented in `docs/ROOTING_DECISION_MATRIX.md`.
 
 ## Quick start
 
-1. Read `docs/PROJECT_CHARTER.md` and `docs/RISK_AND_SAFETY.md`.
+1. Read `docs/PROJECT_CHARTER.md`, `docs/RISK_AND_SAFETY.md`, and `docs/ROOTING_DECISION_MATRIX.md`.
 2. Set up development environment (Android SDK, adb). See `docs/SETUP.md`.
-3. Build the Android probe from `android/` with the checked-in Gradle wrapper.
-4. Connect a test phone, verify `adb devices`, then install and run the read-only probe app.
-5. Follow the Test Plan in `docs/TEST_PLAN.md`.
+3. Fill the live hardware details in `docs/HARDWARE_INVENTORY.md` and review `docs/FIRST_LIVE_DOCK_CHECKLIST.md`.
+4. Build the Android probe from `android/` with the checked-in Gradle wrapper.
+5. Connect a test phone, verify `adb devices`, then install and run the read-only probe app.
+6. Follow `docs/TEST_PLAN.md` for either the modern-phone visibility gate or the rooted Note 9 fallback capture path.
 
 ## Safety
 
@@ -40,6 +44,7 @@ Build-ready, read-only probing phase.
 
 - `/docs` — project documents and policies
 - `/android` — Kotlin app for USB probing
+- `/hardware` — dock inventory, photos, and hardware fallback notes
 - `/firmware` — hardware bypass code (if needed)
 - `/data` — reviewed traces and logs retained in the repository (sensitive; do not publish raw firmware)
 
