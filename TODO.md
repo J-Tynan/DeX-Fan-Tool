@@ -29,6 +29,7 @@
 ### Research & reconnaissance
 
 - [~] **Inventory available phones and One UI versions** — P0 — *0.5d* — **Joseph** — Populate exact device model, Android / One UI version, USB-C data status, and selected first-test hardware in `docs/HARDWARE_INVENTORY.md`.  
+- [ ] **Record exact Galaxy Note 9 build and rooted-capture viability** — P0 — *0.25d* — **Joseph** — Confirm exact model / region, Android and One UI version, bootloader unlock status, backup state, and whether the phone still triggers DeX Station fan behavior before attempting root.  
 - [x] **Verify test bench readiness before first live USB test** — P0 — *0.5d* — **Joseph** — Confirm powered hub, smartphones, cables, power path, and abort path before live enumeration.  
 - [ ] **Verify dock visibility on modern phone (decision gate)** — P0 — *0.5d* — **Joseph** — Use the existing Kotlin probe on the primary modern phone; if visible continue to VID/PID capture, otherwise pivot to fallback tasks.  
 - [ ] **Confirm dock VID/PID and descriptors** — P0 — *1d* — **Joseph** — If the dock is visible to Android, capture vendor/product IDs and descriptors with the USB enumerator.  
@@ -48,11 +49,13 @@
 - [ ] **Test probe on modern phone (no root)** — P0 — *0.5d* — **Joseph** — Execute the Research & reconnaissance visibility gate and record whether the dock appears as `UsbDevice`.  
 - [ ] **If dock visible: expand probe ranges and capture responses** — P0 — *1–2d* — **Joseph** — Carefully iterate vendor IN requests; log all non-empty responses.  
 - [ ] **If dock not visible: attempt to free interface (toggle DeX, reboot)** — P1 — *0.5d* — **Joseph** — Document steps and results.  
-- [ ] **If dock not visible and still needed: plan capture with rooted phone or hardware sniffer** — P1 — *1d* — **Joseph** — Decide path and procure tools.
+- [ ] **If dock not visible and still needed: validate rooted Note 9 or hardware-analyzer fallback** — P1 — *1d* — **Joseph** — Prefer the rooted Note 9 `usbmon` path first, then fall back to a hardware analyzer if the Note 9 cannot be rooted or does not expose `usbmon`.
 
 ### Capture & analysis
 
-- [ ] **Capture traffic from older One UI phone (if available)** — P0 — *1d* — **Joseph** — Use usbmon or hardware sniffer to record host→dock sequences while fan changes.  
+- [ ] **Validate rooted Note 9 `usbmon` capture path** — P0 — *0.25d* — **Joseph** — After backup and root decision, confirm `debugfs` mounts cleanly and `/sys/kernel/debug/usb/usbmon` is available before live capture.  
+- [ ] **Capture traffic from rooted Note 9 while DeX / fan changes** — P0 — *1d* — **Joseph** — Record `usbmon`, `logcat`, and timing notes while the older phone drives the dock fan.  
+- [ ] **Compare rooted Note 9 capture with modern phone behavior** — P0 — *0.5d* — **Joseph** — Determine whether the modern path fails at USB visibility or after visibility when vendor commands should occur.  
 - [ ] **Analyze captured traces** — P0 — *1–2d* — **Joseph** — Identify controlTransfer parameters, request types, values, and timing correlated with fan speeds.  
 - [ ] **Document discovered sequences** — P0 — *0.5d* — **Joseph** — Add sanitized findings to `docs/` (follow reverse engineering policy).
 
@@ -118,6 +121,7 @@
 5. Complete **Verify dock visibility on modern phone (decision gate)** and record the result as one of: `no charge`, `charge but no HDMI`, `DeX works but app cannot see dock`, or `full DeX plus app visibility`.
 6. If the dock is visible to Android, complete **Confirm dock VID/PID and descriptors** immediately and then update **Establish baseline One UI / fan-control matrix**.
 7. If the dock is not visible, retry once with the case removed and once with a second known-good fast/adaptive charger and cable, then document whether the failure looks like fit, power, display, or USB visibility.
+8. If the modern phone still cannot see the dock, switch to the Note 9 fallback path: record the exact build, confirm the dock still drives the fan, and validate whether root plus `usbmon` is realistic before buying more hardware.
 
 ## Next immediate actions (recommended)
 
@@ -127,5 +131,6 @@
 - [ ] **Verify dock visibility on modern phone (decision gate)** — P0 — *0.5d* — **Joseph** — Record whether the dock is visible, and classify any failure mode precisely.
 - [ ] **Confirm dock VID/PID and descriptors** — P0 — *1d* — **Joseph** — If the dock is visible to Android, capture vendor/product IDs and descriptors with the USB enumerator.
 - [ ] **Establish baseline One UI / fan-control matrix** — P0 — *0.5d* — **Joseph** — Promote community assumptions to local outcomes after the first live session.
+- [ ] **If modern visibility still fails: validate the Note 9 `usbmon` fallback** — P1 — *0.5d* — **Joseph** — Confirm exact Note 9 build, whether the dock still drives the fan, and whether root plus `usbmon` is available before moving to a hardware analyzer.
 
 ---

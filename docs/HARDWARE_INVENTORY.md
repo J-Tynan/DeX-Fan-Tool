@@ -6,6 +6,7 @@ Track the hardware available for safe experiments before changing any fan-contro
 
 - [ ] Fill device details for the primary modern phone (Device, Android/One UI version, USB-C data verified, DeX visibility, Safe for experiments) — see the Phones table below.
 - [ ] Fill device details for the older One UI phone (if available).
+- [ ] For the Galaxy Note 9, record exact model / region, bootloader unlock status, backup state, and whether root is acceptable for `usbmon` capture.
 - [ ] Record the specific model/part number and any notes for the Powered USB hub.
 - [ ] Add bench power supply make/model and the planned current limit for tests.
 - [ ] Record multimeter and thermal sensor models and where they will be placed during tests.
@@ -15,8 +16,8 @@ Track the hardware available for safe experiments before changing any fan-contro
 
 | Device | Android / One UI version | USB-C data verified | DeX Station visibility tested | Safe for experiments | Notes |
 | --- | --- | --- | --- | --- | --- |
-| Samsung Galaxy S23 Ultra | One UI 4.1 based on Android 12 | TBD | Yes | TBD | Record the primary modern test phone first. |
-| Samsung Galaxy Note 9 | One UI 8 based on Android 16 | TBD | TBD | Yes | Record any older One UI device that may still drive the fan. |
+| Samsung Galaxy S23 Ultra | TBD - record actual Android / One UI build locally | TBD | TBD | TBD | Replace the placeholder OS information with the real device build before live testing. |
+| Samsung Galaxy Note 9 | Likely Android 10 / One UI 2.5 - confirm exact build locally | TBD | TBD | TBD | Older dock-era candidate. First confirm it still drives the fan, then record model / region and whether root plus `usbmon` is realistic. |
 
 ## Community Compatibility Matrix
 
@@ -58,6 +59,7 @@ Use this matrix to separate public anecdotes from local verification. Do not pro
 
 - Primary modern phone: Samsung Galaxy S23 Ultra
 - Older One UI phone (if available): Samsung Galaxy Note 9
+- Preferred fallback capture path if the modern phone cannot see the dock: rooted Note 9 plus `usbmon`, then hardware analyzer only if `usbmon` is unavailable
 - Dock selected for first USB enumeration: Primary dock (model: EE-MG950)
 - Powered hub selected: TBD
 - Abort path verified: bench power switch / unplug USB / app remains read-only
@@ -67,4 +69,5 @@ Use this matrix to separate public anecdotes from local verification. Do not pro
 
 - Keep destructive or invasive tests off the primary dock until the owner signs off.
 - Record the date of the last successful USB enumeration test in this file once the Android app can see the dock.
+- Keep raw rooted-phone captures out of the repository until they have been reviewed and redacted; only approved extracts belong in `/data`.
 - Community survey source: `docs/COMMUNITY_REFERENCES.md`
