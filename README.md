@@ -52,4 +52,4 @@ See [LICENSE.md](LICENSE.md). Distribution of sensitive captures, vendor-derived
 
 ## Contact
 
-Project owner: Joseph
+Maintained as a personal project.

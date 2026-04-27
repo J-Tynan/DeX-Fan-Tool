@@ -67,7 +67,7 @@ Use this matrix to separate public anecdotes from local verification. Do not pro
 
 ## Notes
 
-- Keep destructive or invasive tests off the primary dock until the owner signs off.
+- Keep destructive or invasive tests off the primary dock until a go/no-go decision is recorded.
 - Record the date of the last successful USB enumeration test in this file once the Android app can see the dock.
 - Keep raw rooted-phone captures out of the repository until they have been reviewed and redacted; only approved extracts belong in `/data`.
 - Community survey source: `docs/COMMUNITY_REFERENCES.md`

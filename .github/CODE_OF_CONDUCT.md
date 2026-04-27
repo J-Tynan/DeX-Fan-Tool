@@ -26,7 +26,7 @@ This Code of Conduct applies to repository spaces and project collaboration, inc
 
 ## Reporting
 
-Report conduct concerns to the project owner, Joseph, through a private channel when possible. Include links, screenshots, or other relevant context so the report can be reviewed quickly.
+Report conduct concerns through a private project channel when possible. Include links, screenshots, or other relevant context so the report can be reviewed quickly.
 
 If the concern is primarily about unsafe test instructions, sensitive data exposure, or publication of restricted materials, also reference the relevant safety or distribution-policy document in your report.
 

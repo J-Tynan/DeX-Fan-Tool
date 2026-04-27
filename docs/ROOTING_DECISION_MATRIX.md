@@ -20,7 +20,7 @@ If any of these are true, do not root yet.
 
 1. The Note 9 does not reliably trigger DeX Station fan behavior in stock form.
 2. The exact Note 9 model / region is not realistically rootable.
-3. The owner is not willing to lose the Note 9 as a normal-use device.
+3. The test operator is not willing to lose the Note 9 as a normal-use device.
 4. A full backup and recovery plan is not ready.
 5. The only acceptable project outcome is a broad public non-root app for most users.
 

@@ -26,4 +26,4 @@ Define rules and boundaries for reverse engineering activities to ensure ethical
 
 ## Review
 
-- Any decision to publish protocol details or tooling must be reviewed and approved by the project owner.
+- Any decision to publish protocol details or tooling must be reviewed and approved in project records before publication.

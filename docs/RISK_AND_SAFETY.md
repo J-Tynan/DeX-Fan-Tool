@@ -51,4 +51,4 @@ This document lists identified risks, mitigations, and emergency procedures for 
 
 ## Approval
 
-All destructive or invasive tests require explicit sign-off from the project owner.
+All destructive or invasive tests require explicit sign-off in project notes before execution.

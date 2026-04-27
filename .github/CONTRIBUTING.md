@@ -24,7 +24,7 @@ This repository is safety-sensitive. Read-only probing is the default, and anyth
 
 - Prefer non-destructive tests first.
 - Use a powered hub, current-limited supply, and a clear abort path for live hardware tests.
-- Any invasive, destructive, or higher-risk test requires owner sign-off before execution.
+- Any invasive, destructive, or higher-risk test requires documented sign-off before execution.
 - Stop testing immediately if you observe abnormal heat, smell, sound, or current draw.
 - If a change can affect fan control or power delivery, describe rollback or emergency-stop steps in the PR.
 

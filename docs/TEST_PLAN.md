@@ -35,7 +35,7 @@
 
 ## Rooted Note 9 capture runbook
 
-Use this runbook only if the older Galaxy Note 9 still drives the DeX Station fan and the owner accepts the rooting risk.
+Use this runbook only if the older Galaxy Note 9 still drives the DeX Station fan and the test operator accepts the rooting risk.
 
 ### Preconditions
 
