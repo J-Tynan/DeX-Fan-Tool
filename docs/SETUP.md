@@ -114,7 +114,7 @@ If you plan to use notebooks in VS Code, install the Jupyter extension and selec
 
 ```powershell
 Set-Location c:\Projects
-git clone https://github.com/J-Tynan/DeX-Fan-Tool.git
+git clone <repository-url>
 Set-Location c:\Projects\DeX-Fan-Tool
 code .
 ```
