@@ -41,10 +41,10 @@
 - [x] **Install and configure Android SDK and platform-tools** — P0 — *0.25d* — Configured `ANDROID_SDK_ROOT` / `ANDROID_HOME`, provisioned `sdkmanager`, and verified Platform 34, Build-Tools 34.0.0, and `adb`; re-verified locally on 2026-04-14.  
 - [x] **Install local Gradle and generate the Android wrapper** — P0 — *0.25d* — Installed local Gradle 8.7 and generated `gradlew.bat` plus `gradle-wrapper.jar` on 2026-04-13.  
 - [x] **Validate Android project sync and debug build** — P0 — *0.25d* — Verified wrapper task listing and successful `assembleDebug` build on 2026-04-13 after enabling AndroidX.  
-- [ ] **Verify modern phone is visible to adb** — P0 — *0.25d* — Enable developer options / USB debugging and confirm the primary phone appears in `adb devices`.  
+- [x] **Verify modern phone is visible to adb** — P0 — *0.25d* — Completed 2026-05-16 via wireless `adb`; `adb devices -l` reports the Galaxy S23 Ultra as model `SM-S918B`.  
 - [ ] **Install the read-only probe app on the modern phone** — P0 — *0.25d* — Deploy the current app build to the primary test phone before running the USB visibility gate.  
-- [ ] **Create Kotlin USB probe skeleton** — P0 — *1d* — Read-only USB enumeration UI added; next step is safe probe scaffolding after live visibility test.  
-- [ ] **Add logging to capture timestamped traces** — P0 — *0.5d* — Save logs to `/data` with retention rules.  
+- [x] **Create Kotlin USB probe skeleton** — P0 — *1d* — Confirmed complete 2026-05-16; the Android app already provides a read-only USB enumeration UI in `android/app/src/main/java/com/dexfan/tool/MainActivity.kt`.  
+- [x] **Add logging to capture timestamped traces** — P0 — *0.5d* — Confirmed complete 2026-05-16 in `android/app/src/main/java/com/dexfan/tool/ProbeLogger.kt`; timestamped reports are saved to app-internal storage with retention trimming.  
 - [ ] **Test probe on modern phone (no root)** — P0 — *0.5d* — Execute the Research & reconnaissance visibility gate and record whether the dock appears as `UsbDevice`.  
 - [ ] **If dock visible: expand probe ranges and capture responses** — P0 — *1–2d* — Carefully iterate vendor IN requests; log all non-empty responses.  
 - [ ] **If dock not visible: attempt to free interface (toggle DeX, reboot)** — P1 — *0.5d* — Document steps and results.  
@@ -115,17 +115,15 @@
 
 1. Fill the real hardware details for the first live session in `docs/HARDWARE_INVENTORY.md`: actual phone model / OS, charger, cable, dock, hub, and bench tools.
 2. Walk through `docs/FIRST_LIVE_DOCK_CHECKLIST.md` before connecting the phone, especially the power, cabling, and physical-fit checks.
-3. Complete **Verify modern phone is visible to adb**.
-4. Complete **Install the read-only probe app on the modern phone**.
-5. Complete **Verify dock visibility on modern phone (decision gate)** and record the result as one of: `no charge`, `charge but no HDMI`, `DeX works but app cannot see dock`, or `full DeX plus app visibility`.
-6. If the dock is visible to Android, complete **Confirm dock VID/PID and descriptors** immediately and then update **Establish baseline One UI / fan-control matrix**.
-7. If the dock is not visible, retry once with the case removed and once with a second known-good fast/adaptive charger and cable, then document whether the failure looks like fit, power, display, or USB visibility.
-8. If the modern phone still cannot see the dock, switch to the Note 9 fallback path: record the exact build, confirm the dock still drives the fan, and validate whether root plus `usbmon` is realistic before buying more hardware.
+3. Complete **Install the read-only probe app on the modern phone**.
+4. Complete **Verify dock visibility on modern phone (decision gate)** and record the result as one of: `no charge`, `charge but no HDMI`, `DeX works but app cannot see dock`, or `full DeX plus app visibility`.
+5. If the dock is visible to Android, complete **Confirm dock VID/PID and descriptors** immediately and then update **Establish baseline One UI / fan-control matrix**.
+6. If the dock is not visible, retry once with the case removed and once with a second known-good fast/adaptive charger and cable, then document whether the failure looks like fit, power, display, or USB visibility.
+7. If the modern phone still cannot see the dock, switch to the Note 9 fallback path: record the exact build, confirm the dock still drives the fan, and validate whether root plus `usbmon` is realistic before buying more hardware.
 
 ## Next immediate actions (recommended)
 
 - [ ] **Run the first live dock session** — P0 — *0.5d* — Use `docs/FIRST_LIVE_DOCK_CHECKLIST.md` and update `docs/HARDWARE_INVENTORY.md` with real outcomes.
-- [ ] **Verify modern phone is visible to adb** — P0 — *0.25d* — Enable developer options / USB debugging and confirm the primary phone appears in `adb devices`.
 - [ ] **Install the read-only probe app on the modern phone** — P0 — *0.25d* — Deploy the current app build to the primary test phone before running the USB visibility gate.
 - [ ] **Verify dock visibility on modern phone (decision gate)** — P0 — *0.5d* — Record whether the dock is visible, and classify any failure mode precisely.
 - [ ] **Confirm dock VID/PID and descriptors** — P0 — *1d* — If the dock is visible to Android, capture vendor/product IDs and descriptors with the USB enumerator.
