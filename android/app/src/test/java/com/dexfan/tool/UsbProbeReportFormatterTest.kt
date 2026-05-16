@@ -105,7 +105,7 @@ class UsbProbeReportFormatterTest {
         val report = UsbProbeReportFormatter.format(snapshot)
 
         assertTrue(report.contains("Attempted 12 vendor IN probes; non-empty=1, zero-byte=11, no-response=0"))
-        assertTrue(report.contains("IN type=0xC0 req=0x01 val=0x0000 idx=0x0000 -> 4 byte(s): 01 02 0A FF"))
+        assertTrue(report.contains("IN type=0xC0 req=0x01 val=0x0000 idx=0x0000 len=16 -> 4 byte(s): 01 02 0A FF"))
     }
 
     @Test
@@ -132,6 +132,42 @@ class UsbProbeReportFormatterTest {
 
         assertTrue(report.contains("Attempted 24 vendor IN probes; non-empty=0, zero-byte=0, no-response=24"))
         assertTrue(report.contains("No non-empty responses captured."))
+    }
+
+    @Test
+    fun formatTruncatesLongResponsePreview() {
+        val longResponse = List(40) { "00" }.joinToString(" ")
+        val snapshot = UsbProbeSnapshot(
+            usbManagerAvailable = true,
+            devices = listOf(
+                UsbDeviceSnapshot(
+                    deviceName = "/dev/bus/usb/001/002",
+                    vendorId = 0x0BDA,
+                    productId = 0x8152,
+                    deviceClass = 0,
+                    deviceSubclass = 0,
+                    deviceProtocol = 0,
+                    interfaces = emptyList(),
+                    attemptedProbeCount = 1,
+                    vendorInProbeResults = listOf(
+                        UsbVendorInProbeResult(
+                            requestType = 0xC0,
+                            request = 0x05,
+                            value = 0,
+                            index = 0,
+                            requestedLength = 256,
+                            actualLength = 256,
+                            responseHex = longResponse,
+                        )
+                    ),
+                )
+            ),
+        )
+
+        val report = UsbProbeReportFormatter.format(snapshot)
+
+        assertTrue(report.contains("256 byte(s): 00 00 00 00"))
+        assertTrue(report.contains("..."))
     }
 
     @Test

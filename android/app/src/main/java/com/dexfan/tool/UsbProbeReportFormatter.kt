@@ -3,6 +3,8 @@ package com.dexfan.tool
 import java.util.Locale
 
 object UsbProbeReportFormatter {
+    private const val maxResponsePreviewBytes = 32
+
     fun format(snapshot: UsbProbeSnapshot): String {
         if (!snapshot.usbManagerAvailable) {
             return """
@@ -96,7 +98,7 @@ object UsbProbeReportFormatter {
         device.vendorInProbeResults.forEach { result ->
             appendLine(
                 "  - IN type=${formatUsbByte(result.requestType)} req=${formatUsbByte(result.request)} " +
-                    "val=${formatUsbId(result.value)} idx=${formatUsbId(result.index)} -> " +
+                    "val=${formatUsbId(result.value)} idx=${formatUsbId(result.index)} len=${result.requestedLength} -> " +
                     describeProbeResult(result)
             )
         }
@@ -104,10 +106,23 @@ object UsbProbeReportFormatter {
 
     private fun describeProbeResult(result: UsbVendorInProbeResult): String {
         return when {
-            result.actualLength > 0 -> "${result.actualLength} byte(s): ${result.responseHex}"
+            result.actualLength > 0 -> "${result.actualLength} byte(s): ${formatResponsePreview(result.responseHex)}"
             result.actualLength == 0 -> "0 byte(s)"
             else -> "no response"
         }
+    }
+
+    private fun formatResponsePreview(responseHex: String?): String {
+        if (responseHex.isNullOrBlank()) {
+            return "<no data>"
+        }
+
+        val bytes = responseHex.split(' ')
+        if (bytes.size <= maxResponsePreviewBytes) {
+            return responseHex
+        }
+
+        return bytes.take(maxResponsePreviewBytes).joinToString(" ") + " ..."
     }
 
     fun appendLogStatus(report: String, result: ProbeLogResult): String {

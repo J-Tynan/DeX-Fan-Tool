@@ -115,7 +115,7 @@
 
 1. Fill the remaining real hardware details for the successful 2026-05-16 live session in `docs/HARDWARE_INVENTORY.md`: charger, cable, dock, hub, and bench tools.
 2. Review whether the successful 2026-05-16 probe log should be retained in `/data` as a sanitized artifact.
-3. Characterize the newly discovered `0x0BDA:0x8152` request `0x05` read-only response space by varying lengths and carefully chosen `value` / `index` pairs while keeping the session non-destructive and tightly logged.
+3. Probe `0x0BDA:0x8152` `req=0x05` for larger-length boundary behavior while keeping the session non-destructive and tightly logged.
 4. If visibility regresses on a repeat test, classify whether the failure looks like fit, power, display, or USB visibility before falling back to the Note 9 path.
 
 ## Next immediate actions (recommended)
@@ -126,7 +126,12 @@
 - [x] **Confirm dock VID/PID and descriptors** — P0 — *1d* — Completed 2026-05-16 with `0x04B4:0x5210` and `0x0BDA:0x8152` plus interface summaries.
 - [x] **Establish baseline One UI / fan-control matrix** — P0 — *0.5d* — Completed 2026-05-16 for Galaxy S23 Ultra / Android 16 / One UI 8.0; fan silent during the read-only session.
 - [x] **If dock visible: expand probe ranges and capture responses** — P0 — *1–2d* — Completed 2026-05-16: widened read-only vendor IN probes found non-empty 16-byte responses on `0x0BDA:0x8152` for request `0x05`; `0x04B4:0x5210` remained silent in the same tested range.
-- [ ] **Characterize `0x0BDA:0x8152` request `0x05` response space** — P0 — *0.5–1d* — Stay read-only and map which lengths, recipients, and small `value` / `index` changes affect the returned payload.
+- [x] **Characterize `0x0BDA:0x8152` request `0x05` response space** — P0 — *0.5–1d* — Completed 2026-05-16: across recipients `0xC0` and `0xC1`, lengths `8` / `16` / `32`, and tested `value` / `index` pairs `0x0000..0x0003`, all 72 read-only probes returned full-length all-zero payloads.
+- [x] **Probe `0x0BDA:0x8152` `req=0x05` for length boundary behavior** — P0 — *0.25–0.5d* — Completed 2026-05-16: the boundary sweep returned full-length all-zero payloads at lengths `8`, `16`, `32`, and `64` for both `0xC0` and `0xC1`, plus a full-length all-zero `128`-byte response for `0xC0`; one likely `0xC1` `len=128` attempt did not respond.
+- [x] **Confirm the `0xC1` `len=128` miss and probe beyond `128` bytes** — P0 — *0.25–0.5d* — Completed 2026-05-16: device-recipient `0xC0` reads continued to return full-length all-zero payloads at `128`, `256`, and `512`, while interface-recipient `0xC1` reads responded through `64` bytes and then stopped.
+- [x] **Check whether the `0xC1` path has a hard 64-byte limit** — P0 — *0.25–0.5d* — Completed 2026-05-16: a repeat run reproduced the same boundary, with `0xC1` returning full-length all-zero payloads through `64` bytes and no responses at `128`, `256`, or `512`.
+- [x] **Probe `0xC0` beyond `512` bytes** — P0 — *0.25–0.5d* — Completed 2026-05-16: device-recipient `0xC0` reads continued to return full-length all-zero payloads at `1024` and `2048` with no short-reads.
+- [ ] **Decide whether to keep extending the zero-fill boundary search** — P0 — *0.25d* — Review whether probing beyond `2048` is likely to add value, or whether the modern-phone read-only path has yielded enough evidence to pivot toward capture comparison or a different hypothesis.
 - [ ] **Record exact Galaxy Note 9 build and rooted-capture viability** — P0 — *0.25d* — Keep the fallback path ready if modern stock access stops being sufficient.
 
 ---
