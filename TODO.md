@@ -30,9 +30,9 @@
 - [~] **Inventory available phones and One UI versions** — P0 — *0.5d* — Populate exact device model, Android / One UI version, USB-C data status, and selected first-test hardware in `docs/HARDWARE_INVENTORY.md`.  
 - [ ] **Record exact Galaxy Note 9 build and rooted-capture viability** — P0 — *0.25d* — Confirm exact model / region, Android and One UI version, bootloader unlock status, backup state, and whether the phone still triggers DeX Station fan behavior before attempting root.  
 - [x] **Verify test bench readiness before first live USB test** — P0 — *0.5d* — Confirm powered hub, smartphones, cables, power path, and abort path before live enumeration.  
-- [ ] **Verify dock visibility on modern phone (decision gate)** — P0 — *0.5d* — Use the existing Kotlin probe on the primary modern phone; if visible continue to VID/PID capture, otherwise pivot to fallback tasks.  
-- [ ] **Confirm dock VID/PID and descriptors** — P0 — *1d* — If the dock is visible to Android, capture vendor/product IDs and descriptors with the USB enumerator.  
-- [ ] **Establish baseline One UI / fan-control matrix** — P0 — *0.5d* — Record which phone / OS combinations are confirmed to drive the fan, fail, or remain unverified.  
+- [x] **Verify dock visibility on modern phone (decision gate)** — P0 — *0.5d* — Completed 2026-05-16 on the Galaxy S23 Ultra (`SM-S918B`, Android 16 / One UI 8.0): phone charged, HDMI worked, DeX launched, and the read-only probe app enumerated two USB devices. The fan remained silent during the session.  
+- [x] **Confirm dock VID/PID and descriptors** — P0 — *1d* — Completed 2026-05-16 with the read-only enumerator: visible functions `0x04B4:0x5210` and `0x0BDA:0x8152` plus interface summaries preserved in the saved probe log.  
+- [x] **Establish baseline One UI / fan-control matrix** — P0 — *0.5d* — Initial local baseline recorded 2026-05-16 for Galaxy S23 Ultra / Android 16 / One UI 8.0: `full DeX plus app visibility`; fan silent during the read-only session.  
 - [x] **Locate any public references / community work** — P2 — *1d* — Initial survey documented 2026-04-14 in `docs/COMMUNITY_REFERENCES.md`; findings include mixed S23/S24 compatibility anecdotes, charger/cable sensitivity, and no clear public fan-control reverse-engineering repo.
 
 ### Software probe (non‑destructive)
@@ -42,11 +42,11 @@
 - [x] **Install local Gradle and generate the Android wrapper** — P0 — *0.25d* — Installed local Gradle 8.7 and generated `gradlew.bat` plus `gradle-wrapper.jar` on 2026-04-13.  
 - [x] **Validate Android project sync and debug build** — P0 — *0.25d* — Verified wrapper task listing and successful `assembleDebug` build on 2026-04-13 after enabling AndroidX.  
 - [x] **Verify modern phone is visible to adb** — P0 — *0.25d* — Completed 2026-05-16 via wireless `adb`; `adb devices -l` reports the Galaxy S23 Ultra as model `SM-S918B`.  
-- [ ] **Install the read-only probe app on the modern phone** — P0 — *0.25d* — Deploy the current app build to the primary test phone before running the USB visibility gate.  
+- [x] **Install the read-only probe app on the modern phone** — P0 — *0.25d* — Completed 2026-05-16 by installing `android/app/build/outputs/apk/debug/app-debug.apk` with `adb install -r`.  
 - [x] **Create Kotlin USB probe skeleton** — P0 — *1d* — Confirmed complete 2026-05-16; the Android app already provides a read-only USB enumeration UI in `android/app/src/main/java/com/dexfan/tool/MainActivity.kt`.  
 - [x] **Add logging to capture timestamped traces** — P0 — *0.5d* — Confirmed complete 2026-05-16 in `android/app/src/main/java/com/dexfan/tool/ProbeLogger.kt`; timestamped reports are saved to app-internal storage with retention trimming.  
-- [ ] **Test probe on modern phone (no root)** — P0 — *0.5d* — Execute the Research & reconnaissance visibility gate and record whether the dock appears as `UsbDevice`.  
-- [ ] **If dock visible: expand probe ranges and capture responses** — P0 — *1–2d* — Carefully iterate vendor IN requests; log all non-empty responses.  
+- [x] **Test probe on modern phone (no root)** — P0 — *0.5d* — Completed 2026-05-16; during the docked DeX session the read-only probe app enumerated two USB devices and saved the report to app storage.  
+- [x] **If dock visible: expand probe ranges and capture responses** — P0 — *1–2d* — Completed 2026-05-16 with widened read-only vendor IN probes on the Galaxy S23 Ultra: `0x0BDA:0x8152` returned 16-byte all-zero responses for request `0x05` on device and interface recipients; `0x04B4:0x5210` remained non-responsive in the tested range.  
 - [ ] **If dock not visible: attempt to free interface (toggle DeX, reboot)** — P1 — *0.5d* — Document steps and results.  
 - [ ] **If dock not visible and still needed: validate rooted Note 9 or hardware-analyzer fallback** — P1 — *1d* — Prefer the rooted Note 9 `usbmon` path first, then fall back to a hardware analyzer if the Note 9 cannot be rooted or does not expose `usbmon`.
 
@@ -113,21 +113,20 @@
 
 ## Tomorrow start here
 
-1. Fill the real hardware details for the first live session in `docs/HARDWARE_INVENTORY.md`: actual phone model / OS, charger, cable, dock, hub, and bench tools.
-2. Walk through `docs/FIRST_LIVE_DOCK_CHECKLIST.md` before connecting the phone, especially the power, cabling, and physical-fit checks.
-3. Complete **Install the read-only probe app on the modern phone**.
-4. Complete **Verify dock visibility on modern phone (decision gate)** and record the result as one of: `no charge`, `charge but no HDMI`, `DeX works but app cannot see dock`, or `full DeX plus app visibility`.
-5. If the dock is visible to Android, complete **Confirm dock VID/PID and descriptors** immediately and then update **Establish baseline One UI / fan-control matrix**.
-6. If the dock is not visible, retry once with the case removed and once with a second known-good fast/adaptive charger and cable, then document whether the failure looks like fit, power, display, or USB visibility.
-7. If the modern phone still cannot see the dock, switch to the Note 9 fallback path: record the exact build, confirm the dock still drives the fan, and validate whether root plus `usbmon` is realistic before buying more hardware.
+1. Fill the remaining real hardware details for the successful 2026-05-16 live session in `docs/HARDWARE_INVENTORY.md`: charger, cable, dock, hub, and bench tools.
+2. Review whether the successful 2026-05-16 probe log should be retained in `/data` as a sanitized artifact.
+3. Characterize the newly discovered `0x0BDA:0x8152` request `0x05` read-only response space by varying lengths and carefully chosen `value` / `index` pairs while keeping the session non-destructive and tightly logged.
+4. If visibility regresses on a repeat test, classify whether the failure looks like fit, power, display, or USB visibility before falling back to the Note 9 path.
 
 ## Next immediate actions (recommended)
 
-- [ ] **Run the first live dock session** — P0 — *0.5d* — Use `docs/FIRST_LIVE_DOCK_CHECKLIST.md` and update `docs/HARDWARE_INVENTORY.md` with real outcomes.
-- [ ] **Install the read-only probe app on the modern phone** — P0 — *0.25d* — Deploy the current app build to the primary test phone before running the USB visibility gate.
-- [ ] **Verify dock visibility on modern phone (decision gate)** — P0 — *0.5d* — Record whether the dock is visible, and classify any failure mode precisely.
-- [ ] **Confirm dock VID/PID and descriptors** — P0 — *1d* — If the dock is visible to Android, capture vendor/product IDs and descriptors with the USB enumerator.
-- [ ] **Establish baseline One UI / fan-control matrix** — P0 — *0.5d* — Promote community assumptions to local outcomes after the first live session.
-- [ ] **If modern visibility still fails: validate the Note 9 `usbmon` fallback** — P1 — *0.5d* — Confirm exact Note 9 build, whether the dock still drives the fan, and whether root plus `usbmon` is available before moving to a hardware analyzer.
+- [x] **Run the first live dock session** — P0 — *0.5d* — Completed 2026-05-16: the Galaxy S23 Ultra charged, HDMI worked, DeX launched, the app enumerated two USB devices, and the fan remained silent.
+- [x] **Install the read-only probe app on the modern phone** — P0 — *0.25d* — Completed 2026-05-16 via `adb install -r`.
+- [x] **Verify dock visibility on modern phone (decision gate)** — P0 — *0.5d* — Completed 2026-05-16 with `full DeX plus app visibility`.
+- [x] **Confirm dock VID/PID and descriptors** — P0 — *1d* — Completed 2026-05-16 with `0x04B4:0x5210` and `0x0BDA:0x8152` plus interface summaries.
+- [x] **Establish baseline One UI / fan-control matrix** — P0 — *0.5d* — Completed 2026-05-16 for Galaxy S23 Ultra / Android 16 / One UI 8.0; fan silent during the read-only session.
+- [x] **If dock visible: expand probe ranges and capture responses** — P0 — *1–2d* — Completed 2026-05-16: widened read-only vendor IN probes found non-empty 16-byte responses on `0x0BDA:0x8152` for request `0x05`; `0x04B4:0x5210` remained silent in the same tested range.
+- [ ] **Characterize `0x0BDA:0x8152` request `0x05` response space** — P0 — *0.5–1d* — Stay read-only and map which lengths, recipients, and small `value` / `index` changes affect the returned payload.
+- [ ] **Record exact Galaxy Note 9 build and rooted-capture viability** — P0 — *0.25d* — Keep the fallback path ready if modern stock access stops being sufficient.
 
 ---

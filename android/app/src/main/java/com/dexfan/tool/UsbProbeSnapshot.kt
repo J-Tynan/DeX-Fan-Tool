@@ -18,6 +18,13 @@ data class UsbDeviceSnapshot(
     val deviceSubclass: Int,
     val deviceProtocol: Int,
     val interfaces: List<UsbInterfaceSnapshot>,
+    val permissionGranted: Boolean = true,
+    val permissionRequested: Boolean = false,
+    val vendorInProbeResults: List<UsbVendorInProbeResult> = emptyList(),
+    val attemptedProbeCount: Int = 0,
+    val zeroLengthResponseCount: Int = 0,
+    val noResponseCount: Int = 0,
+    val probeErrorMessage: String? = null,
 )
 
 data class UsbProbeSnapshot(
@@ -29,10 +36,15 @@ data class UsbProbeSnapshot(
             return UsbProbeSnapshot(usbManagerAvailable = false, devices = emptyList())
         }
 
-        fun fromUsbDevices(devices: Collection<UsbDevice>): UsbProbeSnapshot {
+        fun fromUsbDevices(
+            devices: Collection<UsbDevice>,
+            probeStates: Map<String, UsbDeviceProbeState> = emptyMap(),
+        ): UsbProbeSnapshot {
             val snapshots = devices
                 .sortedWith(compareBy<UsbDevice>({ it.vendorId }, { it.productId }, { it.deviceName }))
                 .map { device ->
+                    val probeState = probeStates[device.deviceName]
+
                     UsbDeviceSnapshot(
                         deviceName = device.deviceName,
                         vendorId = device.vendorId,
@@ -50,6 +62,13 @@ data class UsbProbeSnapshot(
                                 endpointCount = usbInterface.endpointCount,
                             )
                         },
+                        permissionGranted = probeState?.permissionGranted ?: true,
+                        permissionRequested = probeState?.permissionRequested ?: false,
+                        vendorInProbeResults = probeState?.vendorInProbeResults ?: emptyList(),
+                        attemptedProbeCount = probeState?.attemptedProbeCount ?: 0,
+                        zeroLengthResponseCount = probeState?.zeroLengthResponseCount ?: 0,
+                        noResponseCount = probeState?.noResponseCount ?: 0,
+                        probeErrorMessage = probeState?.probeErrorMessage,
                     )
                 }
 

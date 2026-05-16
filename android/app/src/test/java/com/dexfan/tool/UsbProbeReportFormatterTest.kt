@@ -10,7 +10,7 @@ class UsbProbeReportFormatterTest {
         val report = UsbProbeReportFormatter.format(UsbProbeSnapshot.managerUnavailable())
 
         assertTrue(report.contains("USB manager unavailable on this device."))
-        assertTrue(report.contains("No USB control transfers are sent from this screen."))
+        assertTrue(report.contains("No USB OUT control transfers are sent from this screen."))
     }
 
     @Test
@@ -43,6 +43,95 @@ class UsbProbeReportFormatterTest {
         assertTrue(report.contains("Detected 1 USB device(s)."))
         assertTrue(report.contains("VID: 0x04E8  PID: 0x6860"))
         assertTrue(report.contains("Interface 0: class=255 subclass=1 protocol=1 endpoints=2"))
+        assertTrue(report.contains("Read-only vendor IN probe:"))
+        assertTrue(report.contains("No probe attempts recorded."))
+    }
+
+    @Test
+    fun formatShowsPermissionRequestedState() {
+        val snapshot = UsbProbeSnapshot(
+            usbManagerAvailable = true,
+            devices = listOf(
+                UsbDeviceSnapshot(
+                    deviceName = "/dev/bus/usb/001/002",
+                    vendorId = 0x04B4,
+                    productId = 0x5210,
+                    deviceClass = 0,
+                    deviceSubclass = 0,
+                    deviceProtocol = 0,
+                    interfaces = emptyList(),
+                    permissionGranted = false,
+                    permissionRequested = true,
+                )
+            ),
+        )
+
+        val report = UsbProbeReportFormatter.format(snapshot)
+
+        assertTrue(report.contains("USB permission requested. Reopen after granting access."))
+    }
+
+    @Test
+    fun formatShowsProbeResponseDetails() {
+        val snapshot = UsbProbeSnapshot(
+            usbManagerAvailable = true,
+            devices = listOf(
+                UsbDeviceSnapshot(
+                    deviceName = "/dev/bus/usb/001/002",
+                    vendorId = 0x04B4,
+                    productId = 0x5210,
+                    deviceClass = 0,
+                    deviceSubclass = 0,
+                    deviceProtocol = 0,
+                    interfaces = emptyList(),
+                    attemptedProbeCount = 12,
+                    zeroLengthResponseCount = 11,
+                    noResponseCount = 0,
+                    vendorInProbeResults = listOf(
+                        UsbVendorInProbeResult(
+                            requestType = 0xC0,
+                            request = 0x01,
+                            value = 0,
+                            index = 0,
+                            requestedLength = 16,
+                            actualLength = 4,
+                            responseHex = "01 02 0A FF",
+                        )
+                    ),
+                )
+            ),
+        )
+
+        val report = UsbProbeReportFormatter.format(snapshot)
+
+        assertTrue(report.contains("Attempted 12 vendor IN probes; non-empty=1, zero-byte=11, no-response=0"))
+        assertTrue(report.contains("IN type=0xC0 req=0x01 val=0x0000 idx=0x0000 -> 4 byte(s): 01 02 0A FF"))
+    }
+
+    @Test
+    fun formatSummarizesEmptyExpandedProbeRun() {
+        val snapshot = UsbProbeSnapshot(
+            usbManagerAvailable = true,
+            devices = listOf(
+                UsbDeviceSnapshot(
+                    deviceName = "/dev/bus/usb/001/002",
+                    vendorId = 0x04B4,
+                    productId = 0x5210,
+                    deviceClass = 0,
+                    deviceSubclass = 0,
+                    deviceProtocol = 0,
+                    interfaces = emptyList(),
+                    attemptedProbeCount = 24,
+                    zeroLengthResponseCount = 0,
+                    noResponseCount = 24,
+                )
+            ),
+        )
+
+        val report = UsbProbeReportFormatter.format(snapshot)
+
+        assertTrue(report.contains("Attempted 24 vendor IN probes; non-empty=0, zero-byte=0, no-response=24"))
+        assertTrue(report.contains("No non-empty responses captured."))
     }
 
     @Test
@@ -73,5 +162,10 @@ class UsbProbeReportFormatterTest {
     @Test
     fun formatUsbIdUsesUppercaseHex() {
         assertEquals("0x00AF", UsbProbeReportFormatter.formatUsbId(0xAF))
+    }
+
+    @Test
+    fun formatUsbByteUsesUppercaseHex() {
+        assertEquals("0x0B", UsbProbeReportFormatter.formatUsbByte(0x0B))
     }
 }

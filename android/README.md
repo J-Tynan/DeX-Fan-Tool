@@ -7,22 +7,23 @@ This folder contains a Kotlin Android app skeleton for enumerating USB devices, 
 - Gradle files are scaffolded.
 - The Gradle wrapper is generated and can be used with `gradlew.bat` on Windows.
 - The app builds successfully in debug mode with the generated wrapper.
-- The app starts a minimal read-only activity that enumerates visible USB devices without sending control transfers.
+- The app starts a minimal read-only activity that enumerates visible USB devices and performs conservative vendor IN probes after USB permission is granted.
 
 ## Next Steps
 
 1. Open the folder in Android Studio and sync the project if you want IDE-assisted Android development.
 2. Connect the primary modern phone and verify `adb devices` can see it.
 3. Install the debug app build and run the USB visibility gate from the TODO.
-4. While Samsung DeX is running on the modern phone, keep the app in **read-only visibility mode**: start normal app logging and let the app enumerate visible USB devices, but do not send control transfers and do not try to force fan behavior.
+4. While Samsung DeX is running on the modern phone, keep the app in **read-only visibility mode**: start normal app logging, let the app enumerate visible USB devices, and only allow the app's conservative vendor IN probes. Do not send OUT control transfers and do not try to force fan behavior.
 5. Record the visibility-gate result as one of: `no charge`, `charge but no HDMI`, `DeX works but app cannot see dock`, or `full DeX plus app visibility`.
 6. If the dock is visible to Android, immediately capture the dock VID/PID and descriptors with the existing enumerator and save the reviewed logs.
 7. Do **not** start traffic capture on the modern phone during this gate. Packet capture belongs to the separate rooted Galaxy Note 9 fallback path documented in `docs/TEST_PLAN.md` and should only happen after the modern-phone visibility gate has been classified.
-8. Only after the visibility gate passes should you add safe probe scaffolding and later consider read-only IN probing.
+8. If the conservative read-only IN probes produce useful responses, widen the probe range carefully and keep the session tightly logged before considering any replay work.
 
 ## Visibility Gate Decision Rule
 
 - For the primary modern-phone DeX test, the correct action is: **log and enumerate only**.
+- For the first expansion beyond pure enumeration, keep the app limited to conservative vendor **IN** requests only.
 - Do not attempt to spin up the dock fan deliberately during this stage.
 - Do not treat DeX launching by itself as permission to start capture or replay work.
 - If DeX works but the app cannot see the dock, record that as a USB visibility failure and stop the Android app workflow there.
