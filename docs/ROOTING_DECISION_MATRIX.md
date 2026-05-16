@@ -83,6 +83,13 @@ Current provisional decision: `HOLD`
 - The main unresolved issue is still whether a stock modern phone can access the dock well enough for a future non-root app.
 - Success is more likely to mean a practical but constrained solution than a universal consumer app.
 
+## Current model-specific note
+
+- The locally tested fallback phone is `SM-N960U1` on bootloader `N960U1UEU9FVG2`.
+- Current boot-state evidence shows `ro.boot.flash.locked=1`, `ro.boot.verifiedbootstate=green`, `sys.oem_unlock_allowed=0`, and warranty bit `0`.
+- Public Snapdragon Note 9 recovery pages exist, but the visible public TWRP target is `crownqltechn`, not this phone's `crownqlteue` U1 branch.
+- Based on the currently verified evidence, this exact device does not yet have a demonstrated practical root path in hand. Treat root feasibility as weak unless a specific U/U1-compatible unlock method is found.
+
 ## Evidence that moves the decision to GO
 
 Any three of these would likely move the score into `GO` territory.

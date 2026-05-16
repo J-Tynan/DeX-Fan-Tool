@@ -28,6 +28,8 @@ This is a reviewed and sanitized summary of the successful read-only probe miles
 - An extended boundary sweep then checked larger lengths on the same path. Device-recipient reads (`0xC0`) continued to return full-length all-zero payloads at `128`, `256`, and `512`, while interface-recipient reads (`0xC1`) stopped responding beyond `64` bytes.
 - A repeat run reproduced the same split: `0xC0` again returned full-length all-zero payloads through `512`, while `0xC1` again returned full-length all-zero payloads only through `64` bytes and then stopped.
 - A larger follow-up then extended the `0xC0` path to `1024` and `2048` bytes. Both returned full-length all-zero payloads again, with no short-reads.
+- A stock Note 9 comparison run then showed the same read-only shape after USB permission was granted: `0x04B4:0x5210` stayed silent, and `0x0BDA:0x8152` again returned all-zero `req=0x05` responses with the same split between the farther-reaching `0xC0` device-recipient path and the shorter `0xC1` interface-recipient path.
+- Because the Note 9 does trigger the dock fan while showing the same read-only USB picture, the remaining difference likely sits in OUT/control traffic, host sequencing, or behavior that Android's current stock USB APIs are not exposing in this probe.
 - The dock fan remained silent throughout these read-only sessions.
 
 ## Reviewed Response Excerpts
@@ -96,6 +98,16 @@ Read-only vendor IN probe:
   - `0xC1` again succeeded at lengths 8/16/32/64 and did not respond at 128/256/512.
 ```
 
+Note 9 comparison source app log: `probe-logs/usb-probe-20260516-171032-622.txt`
+
+```text
+[2] 0x0BDA:0x8152
+Read-only vendor IN probe:
+  - Attempted 16 vendor IN probes; non-empty=13, zero-byte=0, no-response=3
+  - `0xC0` again succeeded at lengths 8/16/32/64/128/256/512/1024/2048 with full-length all-zero payloads.
+  - `0xC1` again succeeded at lengths 8/16/32/64 and did not respond at 128/256/512.
+```
+
 ## Next Read-Only Question
 
-Decide whether extending the device-recipient zero-fill search beyond `2048` is likely to add value, or whether the modern-phone read-only path has already yielded enough evidence to pivot toward comparison capture or a different hypothesis.
+Use the Note 9 comparison result to decide whether to pivot into capture work, because the stock read-only USB view now looks similar on both the fan-triggering and fan-silent phones.

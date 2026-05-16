@@ -34,6 +34,7 @@
 - [x] **Confirm dock VID/PID and descriptors** — P0 — *1d* — Completed 2026-05-16 with the read-only enumerator: visible functions `0x04B4:0x5210` and `0x0BDA:0x8152` plus interface summaries preserved in the saved probe log.  
 - [x] **Establish baseline One UI / fan-control matrix** — P0 — *0.5d* — Initial local baseline recorded 2026-05-16 for Galaxy S23 Ultra / Android 16 / One UI 8.0: `full DeX plus app visibility`; fan silent during the read-only session.  
 - [x] **Locate any public references / community work** — P2 — *1d* — Initial survey documented 2026-04-14 in `docs/COMMUNITY_REFERENCES.md`; findings include mixed S23/S24 compatibility anecdotes, charger/cable sensitivity, and no clear public fan-control reverse-engineering repo.
+- [x] **Document replacement Samsung DeX phone shortlist** — P1 — *0.25d* — Completed 2026-05-16 in `docs/DEX_PHONE_SHORTLIST.md`; records the conservative DeX-capable family list, exact Exynos-first target models, UK buying rules, and the blocked `SM-N960U1` caution.
 
 ### Software probe (non‑destructive)
 
@@ -81,6 +82,7 @@
 ### Admin & procurement
 
 - [ ] **Procure or borrow USB protocol analyzer (optional)** — P2 — *time dependent* — Add to `hardware/README.md` when available.  
+- [ ] **Acquire a replacement Exynos DeX phone from the shortlist** — P1 — *time dependent* — First choice: `SM-G960F` or `SM-G965F`; second choice: `SM-N960F`; use `docs/DEX_PHONE_SHORTLIST.md` when screening listings.
 - [ ] **Acquire bench power supply and spare dock/phone** — P1 — *time dependent*.
 
 ---
@@ -131,7 +133,8 @@
 - [x] **Confirm the `0xC1` `len=128` miss and probe beyond `128` bytes** — P0 — *0.25–0.5d* — Completed 2026-05-16: device-recipient `0xC0` reads continued to return full-length all-zero payloads at `128`, `256`, and `512`, while interface-recipient `0xC1` reads responded through `64` bytes and then stopped.
 - [x] **Check whether the `0xC1` path has a hard 64-byte limit** — P0 — *0.25–0.5d* — Completed 2026-05-16: a repeat run reproduced the same boundary, with `0xC1` returning full-length all-zero payloads through `64` bytes and no responses at `128`, `256`, or `512`.
 - [x] **Probe `0xC0` beyond `512` bytes** — P0 — *0.25–0.5d* — Completed 2026-05-16: device-recipient `0xC0` reads continued to return full-length all-zero payloads at `1024` and `2048` with no short-reads.
-- [ ] **Decide whether to keep extending the zero-fill boundary search** — P0 — *0.25d* — Review whether probing beyond `2048` is likely to add value, or whether the modern-phone read-only path has yielded enough evidence to pivot toward capture comparison or a different hypothesis.
+- [x] **Decide whether to keep extending the zero-fill boundary search** — P0 — *0.25d* — Completed 2026-05-16: stock Note 9 read-only probing matched the S23 Ultra pattern (`0x04B4:0x5210` silent; `0x0BDA:0x8152` request `0x05` returns all-zero buffers with `0xC0` extending farther than `0xC1`) even though the Note 9 does trigger the dock fan, so extending the zero-fill search further is unlikely to add much value.
 - [ ] **Record exact Galaxy Note 9 build and rooted-capture viability** — P0 — *0.25d* — Keep the fallback path ready if modern stock access stops being sufficient.
+- [ ] **Compare stock Note 9 and S23 Ultra probe behavior against fan outcome** — P0 — *0.25d* — Summarize the key inference: the read-only USB view is similar on both phones, so the fan-triggering difference likely sits in unobserved OUT/control traffic, host sequencing, or non-Android-visible behavior.
 
 ---
