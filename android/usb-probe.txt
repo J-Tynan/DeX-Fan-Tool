@@ -1,0 +1,103 @@
+Generated at: 2026-05-16T15:25:17.353728+01:00
+Log tag: DeXFanTool
+
+DeX Fan Tool
+Read-only USB enumeration and vendor IN probe mode.
+
+Detected 2 USB device(s).
+
+[1] /dev/bus/usb/002/003
+VID: 0x04B4  PID: 0x5210
+Class/Subclass/Protocol: 0/0/0
+Interfaces: 2
+  - Interface 0: class=17 subclass=0 protocol=0 endpoints=0
+  - Interface 1: class=3 subclass=0 protocol=0 endpoints=1
+Read-only vendor IN probe:
+  - Attempted 24 vendor IN probes; non-empty=0, zero-byte=0, no-response=24
+  - No non-empty responses captured.
+
+[2] /dev/bus/usb/002/004
+VID: 0x0BDA  PID: 0x8152
+Class/Subclass/Protocol: 0/0/0
+Interfaces: 4
+  - Interface 0: class=255 subclass=255 protocol=0 endpoints=3
+  - Interface 1: class=2 subclass=6 protocol=0 endpoints=1
+  - Interface 2: class=10 subclass=0 protocol=0 endpoints=0
+  - Interface 3: class=10 subclass=0 protocol=0 endpoints=2
+Read-only vendor IN probe:
+  - Attempted 72 vendor IN probes; non-empty=72, zero-byte=0, no-response=0
+  - IN type=0xC0 req=0x05 val=0x0000 idx=0x0000 len=8 -> 8 byte(s): 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0000 idx=0x0001 len=8 -> 8 byte(s): 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0000 idx=0x0002 len=8 -> 8 byte(s): 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0000 idx=0x0003 len=8 -> 8 byte(s): 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0001 idx=0x0000 len=8 -> 8 byte(s): 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0001 idx=0x0001 len=8 -> 8 byte(s): 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0001 idx=0x0002 len=8 -> 8 byte(s): 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0001 idx=0x0003 len=8 -> 8 byte(s): 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0002 idx=0x0000 len=8 -> 8 byte(s): 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0002 idx=0x0001 len=8 -> 8 byte(s): 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0002 idx=0x0002 len=8 -> 8 byte(s): 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0002 idx=0x0003 len=8 -> 8 byte(s): 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0003 idx=0x0000 len=8 -> 8 byte(s): 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0003 idx=0x0001 len=8 -> 8 byte(s): 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0003 idx=0x0002 len=8 -> 8 byte(s): 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0003 idx=0x0003 len=8 -> 8 byte(s): 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0000 idx=0x0000 len=16 -> 16 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0000 idx=0x0001 len=16 -> 16 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0000 idx=0x0002 len=16 -> 16 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0000 idx=0x0003 len=16 -> 16 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0001 idx=0x0000 len=16 -> 16 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0001 idx=0x0001 len=16 -> 16 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0001 idx=0x0002 len=16 -> 16 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0001 idx=0x0003 len=16 -> 16 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0002 idx=0x0000 len=16 -> 16 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0002 idx=0x0001 len=16 -> 16 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0002 idx=0x0002 len=16 -> 16 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0002 idx=0x0003 len=16 -> 16 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0003 idx=0x0000 len=16 -> 16 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0003 idx=0x0001 len=16 -> 16 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0003 idx=0x0002 len=16 -> 16 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0003 idx=0x0003 len=16 -> 16 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0000 idx=0x0000 len=32 -> 32 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0000 idx=0x0001 len=32 -> 32 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0000 idx=0x0002 len=32 -> 32 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0000 idx=0x0003 len=32 -> 32 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0001 idx=0x0000 len=32 -> 32 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0001 idx=0x0001 len=32 -> 32 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0001 idx=0x0002 len=32 -> 32 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0001 idx=0x0003 len=32 -> 32 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0002 idx=0x0000 len=32 -> 32 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0002 idx=0x0001 len=32 -> 32 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0002 idx=0x0002 len=32 -> 32 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0002 idx=0x0003 len=32 -> 32 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0003 idx=0x0000 len=32 -> 32 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0003 idx=0x0001 len=32 -> 32 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0003 idx=0x0002 len=32 -> 32 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC0 req=0x05 val=0x0003 idx=0x0003 len=32 -> 32 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC1 req=0x05 val=0x0000 idx=0x0000 len=8 -> 8 byte(s): 00 00 00 00 00 00 00 00
+  - IN type=0xC1 req=0x05 val=0x0001 idx=0x0000 len=8 -> 8 byte(s): 00 00 00 00 00 00 00 00
+  - IN type=0xC1 req=0x05 val=0x0002 idx=0x0000 len=8 -> 8 byte(s): 00 00 00 00 00 00 00 00
+  - IN type=0xC1 req=0x05 val=0x0003 idx=0x0000 len=8 -> 8 byte(s): 00 00 00 00 00 00 00 00
+  - IN type=0xC1 req=0x05 val=0x0000 idx=0x0000 len=16 -> 16 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC1 req=0x05 val=0x0001 idx=0x0000 len=16 -> 16 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC1 req=0x05 val=0x0002 idx=0x0000 len=16 -> 16 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC1 req=0x05 val=0x0003 idx=0x0000 len=16 -> 16 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC1 req=0x05 val=0x0000 idx=0x0000 len=32 -> 32 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC1 req=0x05 val=0x0001 idx=0x0000 len=32 -> 32 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC1 req=0x05 val=0x0002 idx=0x0000 len=32 -> 32 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC1 req=0x05 val=0x0003 idx=0x0000 len=32 -> 32 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC1 req=0x05 val=0x0000 idx=0x0001 len=8 -> 8 byte(s): 00 00 00 00 00 00 00 00
+  - IN type=0xC1 req=0x05 val=0x0001 idx=0x0001 len=8 -> 8 byte(s): 00 00 00 00 00 00 00 00
+  - IN type=0xC1 req=0x05 val=0x0002 idx=0x0001 len=8 -> 8 byte(s): 00 00 00 00 00 00 00 00
+  - IN type=0xC1 req=0x05 val=0x0003 idx=0x0001 len=8 -> 8 byte(s): 00 00 00 00 00 00 00 00
+  - IN type=0xC1 req=0x05 val=0x0000 idx=0x0001 len=16 -> 16 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC1 req=0x05 val=0x0001 idx=0x0001 len=16 -> 16 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC1 req=0x05 val=0x0002 idx=0x0001 len=16 -> 16 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC1 req=0x05 val=0x0003 idx=0x0001 len=16 -> 16 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC1 req=0x05 val=0x0000 idx=0x0001 len=32 -> 32 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC1 req=0x05 val=0x0001 idx=0x0001 len=32 -> 32 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC1 req=0x05 val=0x0002 idx=0x0001 len=32 -> 32 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  - IN type=0xC1 req=0x05 val=0x0003 idx=0x0001 len=32 -> 32 byte(s): 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+No USB OUT control transfers are sent from this screen.
+
