@@ -13,17 +13,17 @@ This document is intentionally limited to staging and go/no-go preparation. It d
 
 ## Exact-Match Gate
 
-- [ ] Confirm the phone still reports model `SM-G960F` or `SM-G960F/DS`.
+- [x] Confirm the phone still reports model `SM-G960F` or `SM-G960F/DS`.
 - [ ] Confirm the rooted-target codename is still being treated as `starlte` in all downloaded recovery references.
 - [ ] Stop if any file, guide, or package references a different Galaxy S9 family or codename.
 
 ## Firmware And State Gate
 
-- [ ] Confirm the phone still boots the stock OS successfully.
-- [ ] Confirm the phone is still on Android 10, which matches the currently documented `starlte` installation prerequisite from the official LineageOS page.
-- [ ] Confirm charge, HDMI, and DeX still work on the DeX Station before any flash step.
-- [ ] Confirm wireless or USB `adb` still works.
-- [ ] Confirm no Google accounts have been added back to the phone.
+- [x] Confirm the phone still boots the stock OS successfully.
+- [x] Confirm the phone is still on Android 10, which matches the currently documented `starlte` installation prerequisite from the official LineageOS page.
+- [x] Confirm charge, HDMI, and DeX still work on the DeX Station before any flash step.
+- [x] Confirm wireless or USB `adb` still works.
+- [x] Confirm no Google accounts have been added back to the phone.
 
 ## Package Staging Gate
 
@@ -43,11 +43,16 @@ This document is intentionally limited to staging and go/no-go preparation. It d
 
 ## PC And Cable Prep
 
-- [ ] Use the known-good Windows laptop already verified for `adb`.
-- [ ] Use the known-good USB data cable that has already passed S9 data testing.
+- [x] Use the known-good Windows laptop already verified for `adb`.
+- [x] Use the known-good USB data cable that has already passed S9 data testing.
 - [ ] Close unnecessary phone-management tools before starting Odin work.
 - [ ] Keep the USB connection direct and simple; avoid adding new hubs or adapters during flashing.
 - [ ] Keep the laptop on stable power for the full session.
+
+## Current Verified State
+
+- 2026-05-28: `adb` is currently working over wireless TCP/IP while docked.
+- 2026-05-28: latest quick state check returned model `SM-G960F`, Android `10`, battery `status=2`, `level=84`, `temperature=337`.
 
 ## Phone Prep
 

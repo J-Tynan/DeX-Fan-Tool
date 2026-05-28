@@ -6,10 +6,12 @@ The goal is simple: if the next step fails, the project should still know what s
 
 ## Current Device Record
 
-- [ ] Confirm `docs/HARDWARE_INVENTORY.md` already contains the current S9 model, build, dock behavior, and boot-state notes.
-- [ ] Record whether the phone currently boots cleanly to Android without prompts or warnings beyond the expected unlocked-state screen.
-- [ ] Record whether wireless `adb` still works before shutdown.
-- [ ] Record the current battery level before any flash step.
+- [x] Confirm `docs/HARDWARE_INVENTORY.md` already contains the current S9 model, build, dock behavior, and boot-state notes.
+- [x] Record whether the phone currently boots cleanly to Android without prompts or warnings beyond the expected unlocked-state screen.
+- [x] Record whether wireless `adb` still works before shutdown.
+- [x] Record the current battery level before any flash step.
+
+- 2026-05-28 reference state: wireless `adb` active while docked, battery `status=2`, `level=84`, `temperature=337`.
 
 ## Data And Artifact Hygiene
 
@@ -42,8 +44,8 @@ The goal is simple: if the next step fails, the project should still know what s
 
 ## Stock Baseline Preservation
 
-- [ ] Keep the Note 9 available as the stock fan-positive comparison path.
-- [ ] Keep the S23 Ultra available as the modern stock silent-fan comparison path.
+- [x] Keep the Note 9 available as the stock fan-positive comparison path.
+- [x] Keep the S23 Ultra available as the modern stock silent-fan comparison path.
 - [ ] Do not destroy the ability to repeat the current S9 stock silent-fan baseline until the rooted path has yielded something useful.
 
 ## Abort Conditions
