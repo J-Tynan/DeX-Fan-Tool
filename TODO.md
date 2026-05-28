@@ -49,13 +49,14 @@
 - [x] **Test probe on modern phone (no root)** — P0 — *0.5d* — Completed 2026-05-16; during the docked DeX session the read-only probe app enumerated two USB devices and saved the report to app storage.  
 - [x] **If dock visible: expand probe ranges and capture responses** — P0 — *1–2d* — Completed 2026-05-16 with widened read-only vendor IN probes on the Galaxy S23 Ultra: `0x0BDA:0x8152` returned 16-byte all-zero responses for request `0x05` on device and interface recipients; `0x04B4:0x5210` remained non-responsive in the tested range.  
 - [ ] **If dock not visible: attempt to free interface (toggle DeX, reboot)** — P1 — *0.5d* — Document steps and results.  
-- [ ] **If dock not visible and still needed: validate rooted Note 9 or hardware-analyzer fallback** — P1 — *1d* — Prefer the rooted Note 9 `usbmon` path first, then fall back to a hardware analyzer if the Note 9 cannot be rooted or does not expose `usbmon`.
+- [ ] **If dock not visible and still needed: validate rooted S9 or hardware-analyzer fallback** — P1 — *1d* — Prefer the rooted S9 `usbmon` path first, then fall back to the stock Note 9 timing baseline or a hardware analyzer if the S9 root path stalls.
 
 ### Capture & analysis
 
-- [ ] **Validate rooted Note 9 `usbmon` capture path** — P0 — *0.25d* — After backup and root decision, confirm `debugfs` mounts cleanly and `/sys/kernel/debug/usb/usbmon` is available before live capture.  
-- [ ] **Capture traffic from rooted Note 9 while DeX / fan changes** — P0 — *1d* — Record `usbmon`, `logcat`, and timing notes while the older phone drives the dock fan.  
-- [ ] **Compare rooted Note 9 capture with modern phone behavior** — P0 — *0.5d* — Determine whether the modern path fails at USB visibility or after visibility when vendor commands should occur.  
+- [ ] **Stage S9 pre-flash package set and backup plan** — P0 — *0.25d* — Complete `docs/S9_PRE_FLASH_CHECKLIST.md` and `docs/S9_BACKUP_AND_RECOVERY_CHECKLIST.md` before any recovery or root session.
+- [ ] **Validate rooted S9 `usbmon` capture path** — P0 — *0.25d* — After backup and root decision, confirm `debugfs` mounts cleanly and `/sys/kernel/debug/usb/usbmon` is available on the `SM-G960F` before live capture.  
+- [ ] **Capture traffic from rooted S9 during dock setup** — P0 — *1d* — Record `usbmon`, `logcat`, and timing notes while the S9 reproduces the silent-fan DeX path.  
+- [ ] **Compare rooted S9 capture with Note 9 and S23 Ultra behavior** — P0 — *0.5d* — Determine whether the S9 rooted trace reveals missing OUT/control traffic, timing differences, or another divergence from the stock fan-positive Note 9 baseline.  
 - [ ] **Analyze captured traces** — P0 — *1–2d* — Identify controlTransfer parameters, request types, values, and timing correlated with fan speeds.  
 - [ ] **Document discovered sequences** — P0 — *0.5d* — Add sanitized findings to `docs/` (follow reverse engineering policy).
 
@@ -82,7 +83,8 @@
 ### Admin & procurement
 
 - [ ] **Procure or borrow USB protocol analyzer (optional)** — P2 — *time dependent* — Add to `hardware/README.md` when available.  
-- [ ] **Acquire a replacement Exynos DeX phone from the shortlist** — P1 — *time dependent* — First choice: `SM-G960F` or `SM-G965F`; second choice: `SM-N960F`; use `docs/DEX_PHONE_SHORTLIST.md` when screening listings.
+- [x] **Acquire a replacement Exynos DeX phone from the shortlist** — P1 — *time dependent* — Completed 2026-05-28: `SM-G960F` arrived, passed stock intake, exposes `OEM unlocking`, reconnects over `adb` after the wipe/reboot flow, and supports both stock DeX dock testing and legacy wireless `adb`.
+- [x] **Run replacement phone arrival intake** — P1 — *0.25d* — Completed 2026-05-28 using `docs/REPLACEMENT_PHONE_ARRIVAL_CHECKLIST.md`: stock charge/USB data/HDMI/DeX all worked, the dock fan stayed silent, and the phone is now a credible candidate for later rooted comparison work.
 - [ ] **Acquire bench power supply and spare dock/phone** — P1 — *time dependent*.
 
 ---
@@ -134,7 +136,7 @@
 - [x] **Check whether the `0xC1` path has a hard 64-byte limit** — P0 — *0.25–0.5d* — Completed 2026-05-16: a repeat run reproduced the same boundary, with `0xC1` returning full-length all-zero payloads through `64` bytes and no responses at `128`, `256`, or `512`.
 - [x] **Probe `0xC0` beyond `512` bytes** — P0 — *0.25–0.5d* — Completed 2026-05-16: device-recipient `0xC0` reads continued to return full-length all-zero payloads at `1024` and `2048` with no short-reads.
 - [x] **Decide whether to keep extending the zero-fill boundary search** — P0 — *0.25d* — Completed 2026-05-16: stock Note 9 read-only probing matched the S23 Ultra pattern (`0x04B4:0x5210` silent; `0x0BDA:0x8152` request `0x05` returns all-zero buffers with `0xC0` extending farther than `0xC1`) even though the Note 9 does trigger the dock fan, so extending the zero-fill search further is unlikely to add much value.
-- [ ] **Record exact Galaxy Note 9 build and rooted-capture viability** — P0 — *0.25d* — Keep the fallback path ready if modern stock access stops being sufficient.
+- [ ] **Record exact Galaxy Note 9 build and rooted-capture viability** — P0 — *0.25d* — Keep the fan-positive fallback baseline ready if the S9 rooted path stalls or later exact-model Note 9 rootability improves.
 - [ ] **Compare stock Note 9 and S23 Ultra probe behavior against fan outcome** — P0 — *0.25d* — Summarize the key inference: the read-only USB view is similar on both phones, so the fan-triggering difference likely sits in unobserved OUT/control traffic, host sequencing, or non-Android-visible behavior.
 
 ---
