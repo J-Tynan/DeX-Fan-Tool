@@ -24,3 +24,12 @@ __pycache__/
 *.asc
 *.p12
 *.jks
+
+# Local staged firmware / recovery artifacts
+/firmware/*.apk
+/firmware/*.img
+/firmware/*.img.tar
+/firmware/*.md5
+/firmware/*.sha256
+/firmware/*.tar
+/firmware/*.zip

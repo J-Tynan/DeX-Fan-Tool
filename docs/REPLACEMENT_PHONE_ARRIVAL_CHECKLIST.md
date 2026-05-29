@@ -9,7 +9,7 @@ The goal is to avoid wasting time on root steps before basic intake is complete.
 - [x] Confirm `adb` works on the Windows machine that will be used for intake.
 - [x] Confirm one known-good USB data cable is set aside for the phone.
 - [x] Confirm the DeX Station, power supply, HDMI path, and display are ready for a short stock test.
-- [ ] Download but do not flash the likely root-work tools yet: Odin, the relevant TWRP package for `starlte`, and current Magisk files.
+- [ ] Download but do not flash the likely root-work tools yet: Heimdall or Odin, the relevant TWRP package for `starlte`, and current Magisk files.
 - [x] Make sure `docs/HARDWARE_INVENTORY.md` already lists the incoming phone.
 - [x] Decide in advance that no Google or Samsung account will be added during intake.
 
