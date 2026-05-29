@@ -1,0 +1,1 @@
+We are preparing to flash TWRP to a Galaxy S9 SM-G960F. Stock firmware, TWRP, Magisk, and Heimdall are already staged externally. On the laptop, Heimdall was blocked by unstable Windows USB behavior. Next step is to bind the S9 Download Mode device (VID 04E8 PID 685D) to libusbK on the desktop, verify heimdall print-pit, then flash recovery.img with --RECOVERY and --no-reboot.
