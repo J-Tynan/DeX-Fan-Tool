@@ -1,6 +1,6 @@
 # Replacement Phone Arrival Checklist
 
-Use this checklist when the ordered replacement phone arrives. The current target is the incoming Galaxy S9 `SM-G960F`, but the checklist is written so it can be reused for later replacement devices.
+Use this checklist when the ordered replacement phone arrives. The current target is the incoming Galaxy Note 9 `SM-N960F`, but the checklist is written so it can be reused for later replacement devices.
 
 The goal is to avoid wasting time on root steps before basic intake is complete. A phone with the right model number can still be a bad project candidate if the USB-C port is damaged, DeX output is unstable, or `OEM unlocking` is missing.
 
@@ -9,7 +9,7 @@ The goal is to avoid wasting time on root steps before basic intake is complete.
 - [x] Confirm `adb` works on the Windows machine that will be used for intake.
 - [x] Confirm one known-good USB data cable is set aside for the phone.
 - [x] Confirm the DeX Station, power supply, HDMI path, and display are ready for a short stock test.
-- [ ] Download but do not flash the likely root-work tools yet: Heimdall or Odin, the relevant TWRP package for `starlte`, and current Magisk files.
+- [ ] Download but do not flash the likely root-work tools yet: Heimdall or Odin, the relevant TWRP package for the exact target codename, and current Magisk files.
 - [x] Make sure `docs/HARDWARE_INVENTORY.md` already lists the incoming phone.
 - [x] Decide in advance that no Google or Samsung account will be added during intake.
 
@@ -17,14 +17,14 @@ The goal is to avoid wasting time on root steps before basic intake is complete.
 
 - [ ] Photograph the parcel condition before opening if it looks damaged.
 - [ ] Photograph the phone front, back, frame corners, and USB-C port.
-- [x] Confirm the phone is physically a Galaxy S9-class device and not a substituted model.
+- [x] Confirm the phone is physically a Galaxy Note 9-class device and not a substituted model.
 - [x] Check for obvious display cracks, frame bends, battery swelling, or water-damage signs.
 - [x] Check whether a SIM tray is present and whether the buttons feel normal.
 
 ## Identity Check
 
 - [x] Confirm the exact model number from the label or the booted OS.
-- [x] Confirm the model is `SM-G960F` or `SM-G960F/DS`.
+- [x] Confirm the model is `SM-N960F`, `SM-N960F/DS`, or another explicitly accepted Exynos target.
 - [x] If the phone is `U`, `U1`, or another unexpected variant, stop and record that immediately.
 - [ ] Record the IMEI status only as `clear`, `unclear`, or `problem`; do not commit the full IMEI.
 
@@ -64,7 +64,7 @@ The goal is to avoid wasting time on root steps before basic intake is complete.
 
 Treat the device as a good project candidate only if all of these are true.
 
-- [x] Exact model is `SM-G960F` or `SM-G960F/DS`.
+- [x] Exact model is the expected incoming Exynos target, currently `SM-N960F` or `SM-N960F/DS`.
 - [x] The phone boots and is not account-locked.
 - [x] USB-C charging and data are stable.
 - [x] The screen is usable enough for setup and testing.
@@ -89,6 +89,7 @@ Treat the device as a good project candidate only if all of these are true.
 ## Current State Note
 
 - 2026-05-28: enabling `OEM unlocking` on the Galaxy S9 showed a `Delete all` confirmation and started a wipe / reboot flow. After reboot, Developer options and USB debugging were re-enabled, `adb` reconnected normally, and the boot-state signals changed to `ro.boot.flash.locked=0` and `ro.boot.verifiedbootstate=orange`. A same-day stock dock retest then confirmed charge, HDMI, and DeX success, but the dock fan still stayed silent. Legacy Android 10 wireless `adb` was then enabled successfully over TCP/IP for later dock-side capture convenience, without recording the private Wi-Fi address in the repo. Treat the bootloader path as confirmed enough to proceed with later rooted comparison work, not flashing yet.
+- 2026-05-30: an Exynos Galaxy Note 9 `SM-N960F` was purchased on eBay as the next fan-positive replacement-device candidate, with delivery currently expected between 2026-06-02 and 2026-06-04. Use this checklist for that intake rather than for another S9-class device.
 
 ## Before Any Recovery Or Root Session
 
